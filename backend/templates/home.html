@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+    <main>
+        <section class="hero" >
+            {% if banner %}
+            <div class="slider_swiper" >
+                <div class="swiper-wrapper" >
+                    {% for item in banner  %}
+                    <div class="swiper-slide"  style="background:{{item.backgrouncolor}}">
+                        <div class="container" >
+                            <div class="hero_box" >
+                                <div class="hero_left" >
+                                    <h1>{{item.title}}</h1>
+                                    <a href="{{item.link}}" class="btn"  style="background:{{item.colorbutton}}">Bizda xarid qiling</a>
+
+                                </div>
+                                <div class="hero_right  " >
+                                    <img src="{{item.image.url}}" alt="hero" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   {% endfor %}
+                   
+
+                </div>
+
+                <div class="swiper-pagination" ></div>
+
+
+            </div>
+           {% endif %}
+
+
+        </section>
+
+        <section class="productsslider" >
+            <div class="container" >
+                <div class="boxproduct" >
+                    <div class="titlbox" >
+                        <h2 class="titleclass" style="text-align:left" >Ko‘p qidirilayotgan mahsulotlar</h2>
+                        <div class="arrowclass" >
+                            <div class="swiper-button-prev" id="swiper-button-prev" ></div>
+                            <div class="swiper-button-next" id="swiper-button-prev" ></div>
+                        </div>
+                    </div>
+                    {% if  top %}
+                    <div class="sliderbox" id="sliderbox" >
+                        <div class="swiper-wrapper" >
+                            {% for item  in top %}
+                        
+                            <div class="swiper-slide" >
+                                <div class="imgbox" >
+                                   <a href="{{ item.get_url }}"> <img src="{{item.image.url}}" alt="product" ></a>
+                                     <i class="fa-regular fa-heart favorite-icon"  data-product-id="{{ item.id }}"  onclick="toggleFavorite(this)">
+
+                                     </i>
+                                </div>
+                                <div class="infobox" >
+                                    <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
+                                    {% if item.price %}
+                                    <p>{{ item.price|price_format }}</p>
+                                   <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
+                                        <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                     </a>
+                                    {% else %}
+                                   <a href="{{ item.get_url }}" class="btn cart">
+                                       <i class="fas fa-info-circle"></i> Batafsil</a>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                          {% endfor %}
+                           
+
+                        </div>
+                    </div>
+                   {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <section class="categoties" >
+            <div class="container" >
+                <div class="titlbox" >
+                    <h2 class="titleclass" >Ommabop mahsulotlar katalogi</h2>
+                    <a href="" class="allcategories" >Barchasini ko‘rish</a>
+
+                </div>
+                 {% if populars  %}
+                <div class="categoties" >
+                    <ul class="categotiesbox" >
+                        {% for popular  in populars %}
+                        <li class="item{{ forloop.counter }}" >
+                            <a href="#" >
+                                <img src="{{ popular.image.url }}" alt="category" >
+                                <p>{{ popular.name }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+                       
+
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        {% if bannerhome %}
+        <section class="banner" >
+            <div class="container" >
+                <div class="bannerbox" >
+                    <div class="bannerleft" >
+                        <img class="bannerimg" src="{{bannerhome.image.url}}" >
+
+                    </div>
+                    <div class="bannerright" >
+                        <h3>{{bannerhome.title}}</h3>
+                         <p>{{ bannerhome.text|safe }}</p>
+                        <a href="#" class="btn" >Bepul qo‘ng‘iroq</a>
+
+                    </div>
+                </div>
+        </section>
+        {% endif %}
+        {% if new %}
+        <section class="productsslider" >
+            <div class="container" >
+                <div class="boxproduct" >
+                    <div class="titlbox" >
+                        <h2 class="titleclass" style="text-align:left" >Yangi mahsulotlar</h2>
+                        <div class="arrowclass" >
+                            <div class="swiper-button-prev" id="swiper-button-prev2" ></div>
+                            <div class="swiper-button-next" id="swiper-button-next2" ></div>
+                        </div>
+                    </div>
+                    <div class="sliderbox" id="sliderbox2" >
+                        <div class="swiper-wrapper" >
+                              {% for item  in new %}
+                        
+                            <div class="swiper-slide" >
+                                <div class="imgbox" >
+                                   <a href="{{ item.get_url }}"> <img src="{{item.image.url}}" alt="product" ></a>
+                                     <i class="fa-regular fa-heart favorite-icon"  data-product-id="{{ item.id }}"  onclick="toggleFavorite(this)">
+
+                                     </i>
+                                </div>
+                                <div class="infobox" >
+                                    <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
+                                    {% if item.price %}
+                                    <p>{{ item.price|price_format }}</p>
+                                   <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
+                                        <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                     </a>
+                                    {% else %}
+                                   <a href="{{ item.get_url }}" class="btn cart">
+                                       <i class="fas fa-info-circle"></i> Batafsil</a>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                          {% endfor %}
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% if brands %}
+            <section class="sections" >
+                <div class="logos row1" id="logosrow1" >
+
+                    <div class="swiper-wrapper" >
+                        {% for brand in brands %}
+                        <img src="{{brand.image.url}}"class="swiper-slide" >
+                        {% endfor %}
+                        
+
+                    </div>
+                </div>
+             {% if clients  %}
+                <div class="logos row2" id="logosrow2" >
+                    <div class="swiper-wrapper" >
+                        {% for client in clients  %}
+                        <img src="{{client.image.url}}" class="swiper-slide" >
+                      {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            </section>
+         {% endif %}
+        {% if bannerfoter %}
+            <section class="formbox" >
+                <div class="container" >
+                    <div class="infobox" >
+                        <div class="formbox_left" >
+                            <h3>{{bannerfoter.title}}</h3>
+                            <p>{{bannerfoter.text|safe}}</p>
+                        </div>
+                        <div class="formbox_right" >
+                            <form action="" class="formclass" >
+                                <input type="text" placeholder="Telefon raqamingiz" >
+                                <button class="btn" >Bepul konsultatsiya</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+
+    </main>
+{% endblock  %}
+  

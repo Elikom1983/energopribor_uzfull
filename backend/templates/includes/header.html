@@ -1,0 +1,133 @@
+  {% load i18n static %}
+{% load mptt_tags %}
+{% load reverse_lang %}
+{% load current_lang %}
+{% load custom_filters %}
+
+
+  <header class="header" >
+
+        <div class="header_top" >
+            <div class="container" >
+                <div class="header_top_box" >
+                    <div class="header_top_left" >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg' %}" >
+                            <path
+                                d="M13.629 13.391L14.085 12.938L13.026 11.874L12.572 12.327L13.629 13.391ZM15.614 12.748L17.525 13.787L18.24 12.469L16.33 11.431L15.614 12.748ZM17.892 15.851L16.472 17.264L17.529 18.327L18.949 16.915L17.892 15.851ZM15.606 17.718C14.156 17.854 10.406 17.733 6.34395 13.695L5.28595 14.758C9.71795 19.165 13.937 19.381 15.746 19.212L15.606 17.718ZM6.34395 13.695C2.47295 9.845 1.83095 6.608 1.75095 5.203L0.252953 5.288C0.352953 7.056 1.14795 10.644 5.28595 14.758L6.34395 13.695ZM7.71895 7.515L8.00595 7.229L6.94995 6.166L6.66295 6.451L7.71895 7.515ZM8.23395 3.594L6.97395 1.91L5.77295 2.81L7.03295 4.493L8.23395 3.594ZM2.73295 1.543L1.16295 3.103L2.22095 4.167L3.78995 2.607L2.73295 1.543ZM7.19095 6.983C6.66095 6.451 6.66095 6.451 6.66095 6.453H6.65895L6.65595 6.457C6.60843 6.50492 6.56588 6.55752 6.52895 6.614C6.47495 6.694 6.41595 6.799 6.36595 6.932C6.24423 7.27533 6.2139 7.64441 6.27795 8.003C6.41195 8.868 7.00795 10.011 8.53395 11.529L9.59195 10.465C8.16295 9.045 7.82295 8.181 7.75995 7.773C7.72995 7.579 7.76095 7.483 7.76995 7.461C7.77595 7.44767 7.77595 7.44567 7.76995 7.455C7.76104 7.4688 7.751 7.48185 7.73995 7.494L7.72995 7.504L7.71995 7.513L7.19095 6.983ZM8.53395 11.529C10.061 13.047 11.21 13.639 12.076 13.771C12.519 13.839 12.876 13.785 13.147 13.684C13.2988 13.6285 13.4406 13.5488 13.567 13.448L13.617 13.403L13.624 13.397L13.627 13.394L13.628 13.392C13.628 13.392 13.629 13.391 13.1 12.859C12.57 12.327 12.573 12.326 12.573 12.326L12.575 12.324L12.577 12.322L12.583 12.317L12.593 12.307L12.631 12.277C12.6403 12.271 12.638 12.2717 12.624 12.279C12.599 12.288 12.501 12.319 12.304 12.289C11.89 12.225 11.02 11.885 9.59195 10.465L8.53395 11.529ZM6.97395 1.909C5.95395 0.549002 3.94995 0.333002 2.73295 1.543L3.78995 2.607C4.32195 2.078 5.26595 2.133 5.77295 2.81L6.97395 1.909ZM1.75195 5.204C1.73195 4.858 1.89095 4.496 2.22095 4.168L1.16195 3.104C0.624953 3.638 0.201953 4.394 0.252953 5.288L1.75195 5.204ZM16.472 17.264C16.198 17.538 15.902 17.692 15.607 17.719L15.746 19.212C16.481 19.143 17.082 18.773 17.53 18.328L16.472 17.264ZM8.00595 7.229C8.99095 6.25 9.06395 4.703 8.23495 3.595L7.03395 4.494C7.43695 5.033 7.37695 5.74 6.94895 6.167L8.00595 7.229ZM17.526 13.788C18.343 14.232 18.47 15.278 17.893 15.852L18.951 16.915C20.291 15.582 19.878 13.359 18.241 12.47L17.526 13.788ZM14.085 12.939C14.469 12.557 15.087 12.463 15.615 12.749L16.331 11.432C15.247 10.842 13.903 11.005 13.027 11.875L14.085 12.939Z"
+                                fill="white" />
+                        </svg>
+                        <a href="tel:{{ site_settings.phone_number }}" >{{ site_settings.phone_number }}</a>
+
+                    </div>
+                    <div class="header_top_center" >
+                        <nav class="tomenu" >
+                            <ul>
+                                <li><a href="#" >Yangiliklar</a></li>
+                                <li><a href="#" >Biz haqimizda</a></li>
+                                <li><a href="#" >Bog‘lanish</a></li>
+                                <li><a href="#" >Ko‘p beriladigan savollar</a></li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header_top_right" >
+                        <a href="#" >Rus</a>
+                        <a href="#" >Uz</a>
+                        <a href="#" >Eng</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" >
+            <div class="header_center" >
+                <div class="logo" >
+                    <div class="logo_image  mobillang" >
+                        <a href="/">
+                       <img src="{{ site_settings.logo.url }}" alt="Logo">
+                        </a>
+                        <div class="language" >
+                            <span>UZ<svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg' %}" >
+                                    <path d="M13 1L7 7L1 0.999999" stroke="#A6A6A6" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <ul class="language_list" >
+                                <li><a href="{% reverse_lang request 'uz' %}" class="top-text_link">UZ</a></li>
+                            <li><a href="{% reverse_lang request 'en' %}">EN</a></li>
+                            <li><a href="{% reverse_lang request 'ru' %}" class="top-text_link">RU</a></li>
+
+                             
+                         
+
+                            </ul>
+                        </div>
+                    </div>
+                    <form action="#" class="search" >
+                        <input type="text" placeholder="Mahsulot qidirish..." >
+                        <button type="submit" >
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg' %}" >
+                                <path
+                                    d="M19.7071 18.2929L15.6569 14.2427C16.7174 12.9936 17.25 11.4236 17.25 9.75C17.25 6.06348 14.1865 3 10.5 3C6.81348 3 3.75 6.06348 3.75 9.75C3.75 13.4365 6.81348 16.5 10.5 16.5C12.1736 16.5 13.7436 15.9674 14.9927 14.9069L18.2929 18.2071C18.6834 18.5976 19.3166 18.5976 19.7071 18.2071C20.0976 17.8166 20.0976 17.1834 19.7071 16.7929ZM10.5 15C7.46243 15 5 12.5376 5 9.5C5 6.46243 7.46243 4 10.5 4C13.5376 4 16 6.46243 16 9.5C16 12.5376 13.5376 15 10.5 15Z"
+                                    fill="#2E2E2E" />
+                            </svg>
+
+                        </button>
+                    </form>
+                    <div class="burger mobilburger" id="line1id1" >
+                        <div class="line1" >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="header_center_right" >
+                    <a href="/whishlist" class="whilst" ><img src="{% static '/img/hearr.svg' %}" alt="" >Saralanganlar</a>
+                    <a href="{% url 'cart' %}" class="cart" ><img src="{% static '/img/cart.png' %}" alt="" >Savatda
+                         <div class="search__second_desc">
+                                    <p data-attr="{{ cart_count }}"></p>
+                                </div>
+                    </a>
+                </div>
+                <div class="burger" >
+                    <div class="line1" id="line1id" >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="burger_text" >
+                        Katalog
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom" >
+                <nav class="menu" >
+                   
+                        <ul>
+                                {% if latest_categories %}
+                                    {% for category in latest_categories %}
+                                        <li>
+                                            <a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>Категориялар топилмади</li>
+                                {% endif %}
+                         </ul>
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+
+    </header>

@@ -1,0 +1,324 @@
+@media (max-width: 1200px) {
+  .main-menu .navigation > li > a {
+    font-size: 10px;
+  }
+
+  .contact-section.contact-page {
+    padding: 0px 50px 0;
+  }
+  .block_for_Amir {
+    top: 190px;
+  }
+  .main-menu .navigation > li {
+    margin-right: 8px;
+  }
+  .navba_search {
+    margin-right: 15px;
+    background: rgba(33, 33, 45, 1);
+    border: unset;
+    color: #777;
+    height: 30px;
+    line-height: 30;
+    font-size: 15px;
+    outline: none;
+  }
+  .sticky-header .main-menu .navigation > li {
+    margin-left: 13px !important;
+    padding: 0;
+    margin-right: 0;
+    background-color: transparent;
+  }
+  .sticky-header .main-menu .navigation > li > a {
+    font-size: 14px;
+  }
+  .fixed-header .sticky-header .logo {
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .main-menu .navigation > li > ul > li > a {
+    padding: 10px 15px;
+    line-height: 20px;
+    font-size: 15px;
+  }
+  .header__logo {
+    margin: auto;
+    margin-left: 10px;
+    font-size: 25px;
+  }
+  .for__icon_info {
+    font-size: 22px;
+  }
+  .info-block__text {
+    font-size: 12px;
+  }
+
+  .header-style-one .upper-row .info .info-block {
+    padding-left: 35px;
+  }
+  .info-text a {
+    font-size: 10px;
+    line-height: 15px;
+  }
+  .info-text p {
+    font-size: 10px;
+    line-height: 15px;
+  }
+  .header-style-one .upper-row {
+    position: relative;
+    display: block;
+    padding: 5px 25px;
+    background: #ffffff;
+  }
+  .header-top-one {
+    padding: 10px 20px;
+  }
+  .main__content_title {
+    margin-top: 130px;
+    margin-left: 41%;
+  }
+  .main__content_description {
+    font-size: 35px;
+  }
+  .main-menu .navigation > li > a {
+    font-size: 11px;
+  }
+  .search__btn_card i {
+    margin: 7px 0 0 15px;
+  }
+  .navba_search {
+    margin-right: 5px;
+  }
+  .animated-image_footer {
+    width: 60px;
+  }
+  .header__logo_footer {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .search__btn_third {
+    right: 25px;
+  }
+  .col-fr {
+    flex: 0 0 25%;
+    width: 25%;
+  }
+}
+
+@media (max-width: 991px) {
+  .animated-image_footer {
+    width: 70px;
+  }
+  .order_block {
+    text-align: center;
+    margin: 36px auto 0;
+    height: 299px;
+    top: 0px;
+    position: relative;
+  }
+  .block_for_Amir {
+    top: 0;
+  }
+  .d-block-f {
+    display: block;
+  }
+  .header-style-one .lower-row {
+    display: none;
+  }
+  .search-btn {
+    padding: 0 0 20px 30px;
+  }
+  .navba_search {
+    margin-right: 20px;
+    background: rgba(33, 33, 45, 1);
+    border: unset;
+    color: #fff;
+    height: 40px;
+    line-height: 30;
+    padding: 10px;
+    font-size: 15px;
+  }
+  .theme-btn {
+    background: unset;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 100;
+  }
+  .main__content_title {
+    margin-top: 0px;
+    margin-left: 42%;
+  }
+  .main__content_description {
+    font-size: 25px;
+  }
+  .sec-title {
+    display: none;
+  }
+  .about-section-one .text-content {
+    display: none;
+  }
+  .about-section-one {
+    padding: 0;
+  }
+  .for__footer_logo {
+    justify-content: center;
+  }
+  .header__logo_footer {
+    color: #178dff;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Roboto Condensed", sans-serif;
+  }
+  .main-footer .upper-section {
+    padding: 5px 0 10px;
+  }
+  .search__card_second {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top-one .email {
+    display: none;
+  }
+  .main-header .header-top .top-left {
+    text-align: left;
+    align-items: flex-end;
+  }
+
+  .main-header .header-top .top-left,
+  .header-top-three .top-left .top-text {
+    width: 80%;
+    text-align: start;
+  }
+  .header-top .inner {
+    display: flex;
+  }
+  .header-style-one .upper-row {
+    padding: 5px 10px;
+  }
+  .header-style-one .upper-row {
+    display: flex;
+    gap: auto;
+  }
+  .header-style-one .upper-row .logo-box {
+    margin-right: auto;
+  }
+  .main__content_title {
+    margin-top: 0px;
+    margin-left: 42%;
+  }
+  .main__content_description {
+    font-size: 18px;
+  }
+  .search__card_second i {
+  }
+  .header-style-one .upper-row {
+    display: flex;
+    align-items: center;
+  }
+  .col-fr {
+    flex: 0 0 33%;
+    width: 32%;
+  }
+}
+@media (max-width: 576px) {
+  .block_for_Amir > ul > li > a {
+    font-size: 12px;
+  }
+  .card_for_Amir > ul > li > a {
+    font-size: 12px;
+  }
+  .contact-section.contact-page {
+    padding: 5px;
+  }
+  .main__content_description {
+    font-size: 14px;
+    text-align: start;
+  }
+  .for_at_img {
+    height: 350px;
+  }
+  .main__content_title {
+    width: 140px;
+    margin-left: 38%;
+  }
+  .main-header .nav-outer {
+    margin-left: 20px;
+  }
+  .search__card_second i {
+  }
+  .contact-section .content-box .image-layer {
+    height: 85%;
+  }
+  .col-fr {
+    flex: 0 0 100%;
+    width: 60%;
+  }
+  
+}
+@media (max-width: 475px) {
+  .main-header .header-top .top-left,
+  .header-top-three .top-left .top-text {
+    width: 60%;
+    text-align: start;
+  }
+  .contact-section .info-box {
+    padding: 5px 20px;
+  }
+  .order_block h2 {
+    font-size: 25px;
+  }
+  .order_block a {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+}
+@media (max-width: 455px) {
+  .header__logo {
+    font-size: 19px;
+  }
+  .header-style-one .upper-row .right-info {
+    column-gap: 5px;
+  }
+}
+
+@media (max-width: 410px) {
+  .header-top-one .email a {
+    font-size: 12px;
+  }
+  .header-top-one {
+    padding: 5px 10px;
+  }
+  .header__logo {
+    font-size: 17px;
+  }
+  .main__content_title {
+    margin-top: 0px;
+    margin-left: 35%;
+  }
+  .main__content_description {
+    font-size: 14px;
+    text-align: center;
+  }
+  .contact-section .content-box .image-layer {
+    height: 100%;
+  }
+}
+@media (max-width: 360px) {
+  .header-top-one .email a {
+    font-size: 10px;
+  }
+  .header-top-one {
+    padding: 0;
+  }
+  .header__logo {
+    font-size: 16px;
+    margin-left: 2px;
+  }
+  .main-header .nav-outer {
+    margin-left: 5px;
+  }
+}

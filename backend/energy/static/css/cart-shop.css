@@ -1,0 +1,119 @@
+.for_cart{
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+.for__amir_cart{
+    position: relative;
+}
+.for__amir_cart{
+    height: max-content;
+    margin-bottom: 30px;
+}
+.for__amir_cart .lower-box h3 a {
+   
+    color: #222222;
+   
+    font-weight: 500;
+}
+.for__amir_cart .lower-box h3 {
+    position: relative;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    padding-bottom: 15px;
+    color: #222222;
+}
+.for__amir_cart .lower-box h3:before {
+    border-bottom: 3px solid #178dff;
+   
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+}
+.for__amir_cart .inner-box:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    bottom: 53px;
+    background: #f8f8f8;
+    transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+.for__amir_cart .meta-info {
+    position: relative;
+    color: #777777;
+}
+
+.for__amir_cart .lower-box {
+    position: relative;
+    padding: 15px 11px 10px;
+    border: 1px solid #f8f8f8;
+    border-top: none;
+}
+.for__amir_cart .for_cart {
+    padding-bottom: 0px !important;
+    position: relative;
+    display: block;
+    max-width: 480px;
+    margin: 0 auto;
+    background: none;
+}
+.for__amir_cart .for_cart, .for__amir_cart .image, .for__amir_cart .image img {
+    height: 100%;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+.for__amir_cart .for_cart .post-date_new {
+    position: absolute;
+    right: 13px;
+    bottom: 17px;
+    width: 45px;
+    height: 45px;
+    line-height: 24px;
+    text-align: center;
+    padding: 12px 5px;
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+}
+.for__amir_cart .inner-box:before {
+    bottom: 0px !important;
+}
+.for__amir_cart .image-box {
+    height: 200px !important;
+    transition: .4s ease all;
+}
+
+.for__amir_cart .lower-box h3 a {
+    font-size: 11px !important;
+    line-height: 16px;
+}
+.for__amir_cart .lower-box h3:before{
+    width: 100px;
+}
+
+.news-section{
+    background: #ebfffe;
+    margin-bottom: 150px !important;
+}
+.for__amir_cart .for_cart{
+    transition: .4s ease all;
+}
+.for__amir_cart .for_cart:hover{
+    transform: scale(1.005);
+}
+@media(max-width:576px){
+    .news-section.news-page {
+        padding-bottom: 0px;
+    }
+    .news-section{
+        margin-bottom: 0 !important;
+    }
+}

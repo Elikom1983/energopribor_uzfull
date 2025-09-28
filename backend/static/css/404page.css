@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.body{
+
+}
+.header{
+   background: url(../images/image404.jpg);
+    min-height: 100vh;
+    min-width: 100vh;
+}
+.headaer__content{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 100px;
+}
+.header__content_description{
+    font-size: 190px;
+color: #ffffff;
+opacity: 2;
+
+    
+}
+.header__content_text{
+    font-size: 45px;
+    color: #ffffff;
+}
+.header__content_link{
+    font-size: 40px;
+    margin-top: 50px;
+    color: yellowgreen;
+    transition: .4s ease all;
+}
+.header__content_link:hover{
+font-size: 42px;
+color: #ffffff;
+font-weight: 500;
+text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: /admin
+Disallow: /partners
+Disallow:/search
+Dissalow:/add_cart     
+Dissalow:/2482003@energopribor.uz
+Dissalow:/tovari 
+Dissalow:/product-category
+Dissalow:/product-category
+Dissalow:/index.html
+Allow: /*.js           
+Allow: /*.css           
+Allow:  /*.png          
+Allow: /*.jpg          
+Allow:  /*.jpeg   
+Allow:  /*.gif           
+Allow: /*.svg          
+Allow:  /*.pdf
+Host: energopribor.uz
+Sitemap: http://energopribor.uz/ru/sitemap.xml

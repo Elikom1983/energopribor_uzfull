@@ -1,0 +1,22 @@
+<form class="res-contact-form" action="{% url 'contact' %}" method="POST">
+    {% csrf_token %}
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        {# <input type="text" class="contact-form" name="{{ form.fields.name.name }}"
+                  placeholder="{{ form.fields.name.label }}" required>#}
+        <input type="text" class="contact-form" name="name"
+               placeholder="{{ form.fields.name.widget.attrs.placeholder }}" required>
+        <input type="text" class="contact-form" name="email"
+               placeholder="{{ form.fields.email.widget.attrs.placeholder }}" required>
+        <input type="text" class="contact-form mb-5" name="phone"
+               placeholder="{{ form.fields.phone.widget.attrs.placeholder }}"
+               required>
+        <input type="text" class="contact-form" name="theme"
+               placeholder="{{ form.fields.theme.widget.attrs.placeholder }}" required>
+        <textarea id="" cols="30" rows="10" name="message" class="contact-form"
+                  placeholder="{{ form.fields.message.widget.attrs.placeholder }}" required></textarea>
+        <button type="submit" class="btn-main form-btn text-center" style=" margin-top: 32px;">
+            {% trans 'Submit' %}
+        </button>
+    </div>
+
+</form>

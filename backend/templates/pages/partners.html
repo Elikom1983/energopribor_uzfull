@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<section class="services-section-four default-theme">
+  <div class="main__content_title">
+    <h2 class="main__content_description">{% trans 'Партнеры' %}</h2>
+  </div>
+
+  <div class="auto-container">
+    <div class="upper-content">
+      <!-- <div class="sec-title centered">
+                      <h2>A smarter way of solving the challenges</h2>
+                      <div class="subtitle">And For Controling Your Energy Production Worldwide</div>
+                      <div class="bottom-dots clearfix">
+                          <span class="dot line-dot"></span>
+                          <span class="dot"></span>
+                          <span class="dot"></span>
+                          <span class="dot"></span>
+                      </div>
+                  </div> -->
+      <div class="text for__sec_text">{% trans 'Наш интернет-магазин является официальным дилером представленных торговых марок. Это означает, что вся продукция действительно фирменная, никакого «серого импорта». На все товары распространяется гарантия производителя, а цены в нашем магазине соответствуют рекомендованным производителем.' %}</div>
+
+
+
+      <section class="programs-section-one for_sec_prog">
+        <div class="bg-pattern-layer"></div>
+
+        <div class="auto-container">
+          <div class="sec-title for_sec_ch centered wow fadeInUp animated" data-wow-delay="0ms"
+            data-wow-duration="2000ms">
+
+            <div class="program-carousel strnix-carousel owl-theme owl-carousel
+                        owl-loaded owl-drag">
+              <!--Program Block-->
+
+
+
+              <div class="owl-stage-outer">
+                <div class="owl-stage class1">
+                  {% for item in partners %}
+                  <div class="owl-item class2">
+                    <div class="program-block for_ser_block">
+                      <div class="inner-box">
+                        <div class="image-box" >
+                          <figure class="image" style="width: 90%"><a href="{{item.url}}"><img src="{{item.image.url}}" alt=""></a>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="bottom-text wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms"
+            style="visibility: hidden; animation-duration: 2000ms; animation-delay: 500ms; animation-name: none;">
+            <div class="text">{% trans 'Наша эл. почта' %}: <a href="mailto:{% trans 'energopribor.@gmail.com' %}">{% trans 'energopribor.@gmail.com' %}</a> <br>{% trans 'Связаться с нами' %} <span class="phone"><a
+                  href="tel:{% trans 'nomer' %}">{% trans 'nomer' %}</a></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!--Service Block-->
+
+
+    </div>
+
+
+
+  </div>
+</section>
+{% endblock %}

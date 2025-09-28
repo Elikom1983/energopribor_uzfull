@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;400;500;700;900&display=swap');
+
+/* /* 
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+
+/* */
+
+.news-block{
+    padding-right: 0;
+    padding-left: 0;
+}
+.inner-box{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.news-block .inner-box:before {
+    bottom: 0px;
+}
+.news-block .image-box, .news-block .image, .news-block .image img {
+    height: 100%;
+}
+.news-block .inner-box:before {
+    bottom: 0px !important;
+}
+.news-block .inner-box {
+    padding-bottom: 0px;
+}
+.news-block .lower-box {
+   
+    padding: 0px 27px 10px;
+}
+.news-block .inner-box {
+    padding-bottom: 0px !important;
+}

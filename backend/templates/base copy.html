@@ -1,0 +1,97 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Energopribor{% endblock %}</title>
+    <!-- Stylesheets -->
+    {% for meta in meta %}
+    {{ meta.meta|safe }}
+    {% endfor %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block meta_content %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% endblock %}
+
+    
+    
+    {% block meta %}
+
+    {% endblock %}
+
+    {% block link %}
+    {% endblock %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Color File -->
+
+    <!-- Responsive File -->
+
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-product.css' %}">
+
+
+
+    <link rel="shortcut icon"
+        href="https://i0.wp.com/energopribor.uz/wp-content/uploads/2021/11/energopribor_logo.png?fit=75%2C75&ssl=1"
+        type="image/x-icon">
+    <link rel="icon" href="{% static 'images/energopribor_logo.webp' %}" type="image/x-icon">
+
+    <!-- Responsive Settings -->
+    
+    
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/respond.js' %}"></script><![endif]-->
+
+</head>
+{% block css %}
+{% endblock %}
+
+<body class="page-loaded">
+
+    <div class="preloader" style="display: none;">
+        <div class="icon"></div>
+    </div>
+    {% include 'includes/header.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% include 'includes/footer.html' %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="{% static 'js/appear.js' %}"></script>
+    <script src="{% static 'js/wow.js' %}"></script>
+    <script src="{% static 'js/scrollbar.js' %}"></script>
+    <script src="{% static 'js/validate.js' %}"></script>
+    <script src="{% static 'js/paroller.js' %}"></script>
+    <script src="{% static 'js/marquee.jquery.json' %}"></script>
+    <script src="{% static 'js/jquery.marquee.min.js' %}"></script>
+    <script src="{% static 'js/my-script.js' %}"></script>
+    <script src="{% static 'js/element-in-view.js' %}"></script>
+    <script src="{% static 'js/custom-script.js' %}"></script>
+    <script>
+        (function(w,d,u){
+                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        })(window,document,'https://supa.uz/upload/crm/site_button/loader_1_cztai0.js');
+</script>
+</body>
+
+</html>

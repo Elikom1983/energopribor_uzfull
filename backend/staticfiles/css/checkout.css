@@ -1,0 +1,28 @@
+.contact-section.contact-page .content-box{
+    top: 200px;
+}
+.main-footer{
+    top: 300px;
+    padding-bottom: 300px;
+}
+@media(max-width:991px){
+    .contact-section.contact-page .content-box{
+        top: 0px;
+    }
+    .contact-section.contact-page{
+        padding: 50px;
+    }
+    .main-footer{
+        top: 50px;
+        padding-bottom: 50px;
+    }
+}
+.contact-section .content-box{
+    background: #1c74ff;
+}
+.contact-section .content-box .image-layer{
+    background: #1c74ff;
+}
+.contact-section .form-box{
+    background: #1c74ff;
+}

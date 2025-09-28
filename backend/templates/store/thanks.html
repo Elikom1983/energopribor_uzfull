@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% block link %}
+{% load custom_filters %}
+    <link rel="stylesheet" href="{% static 'css/cart-shop.css' %}">
+
+{% endblock %}
+{% block content %}
+<section class="order-section">
+  <div class="order_block">
+     <i class="fas fa-check-square"></i>
+     <h2>{% trans 'Спасибо за покупку!' %}</h2>
+     <a href="{% url 'store' %}">{% trans 'Перейти к товарам' %}</a>
+  </div>
+</section>
+
+{% endblock %}

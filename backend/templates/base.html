@@ -1,0 +1,267 @@
+{% load i18n static %}
+{% load mptt_tags %}
+{% load reverse_lang %}
+{% load current_lang %}
+{% load custom_filters %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' >
+   
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+   
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" >
+
+</head>
+
+<body>
+  {% include "includes/header.html" %}
+    {% block  content %}
+    {% endblock  %}
+
+      <footer>
+        <div class="container" >
+            <div class="footerbox" >
+                <div class="footerbox_top" >
+                    {% if footeraddres %}
+                    <div class="footerbox1" >
+                        <h3>Bog‘lanish</h3>
+                        <p>{{footeraddres.address}}</p>
+                        <a href="mailto:{{footeraddres.email}}" class="email" >{{footeraddres.email}}</a>
+                        <a href="tel:{{footeraddres.telefon}}" class="phone" >{{footeraddres.telefon}}</a>
+                        {% if socials %}
+                            <div class="socialbox" >
+                                {% for social in socials %}
+                                <a href="{{social.link}}" ><i class="{{social.classlink}}" ></i></a>
+                               {% endfor %}
+
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="footerbox2" >
+                        <h3>Категориялар</h3>
+                        {% if footecategory %}
+                        <ul>
+                           {% for item in footecategory %}
+                               <li><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+                           {% endfor %}
+
+                           
+
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="footerbox3" >
+                        <h3>Sahifalar</h3>
+                        <ul>
+                            <li><a href="#" >Kompaniya haqida</a></li>
+                            <li><a href="#" >Yetkazib berish va to'lov</a></li>
+                            <li><a href="#" >Maxfiylik siyosati</a></li>
+                            <li><a href="#" >Foydalanish shartlari</a></li>
+                            <li><a href="#" >Aloqa</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="footerbox4" >
+                        <h3><i class="fa-regular fa-headphones" ></i>Qo‘llab-quvvatlash</h3>
+                        <p>Savollaringiz bo‘lsa, mutaxassislarimiz sizga yordam berishadi.</p>
+                        <a href="#" class="btn" >Bepul qo‘ng‘iroq</a>
+                    </div>
+                </div>
+                <div class="footerbox_bottom" >
+                    <h3>To‘lov usullari</h3>
+                    {% if paymentmethod %}
+                    <ul>
+                        {% for item  in paymentmethod  %}
+                         <li><a href="{{item.link}}" ><img src="{{item.logo.url}}"  alt="{{item.title}}"></a></li>
+                       {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright" >
+            <div class="container" >
+                <div class="copyrightbox" >
+                    <p>Energopribor</p>
+                    <p>© 2000-2025 Energopribor. Mahsulotlar sertifikatlangan. Xizmatlar litsenziyalangan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="upbtn" >
+            <i class="fa-solid fa-angle-up" ></i>
+        </div>
+
+    </footer>
+    <div class="menu_cat_desctop" id="catmenuid_desctop" >
+        <div class="close-btn_desctop" id="closedesktopid" ><span>Katalogq</span><i class="fa-solid fa-xmark" ></i></div>
+        <nav class="nav">
+    <ul class="menu_ul_desctop">
+        {% for cat in menus %}
+        <li class="{% if cat.children.exists %}menu-item-has-children{% endif %}">
+            <a class="{% if cat.children.exists %}hasArrow{% endif %}" href="{{ cat.get_absolute_url }}">
+                <span>{{ cat.name }}</span>
+            </a>
+
+            {% if cat.children.exists %}
+            <ul>
+                {% for sub in cat.children.all %}
+                <li>
+                    <a href="{{ sub.get_absolute_url }}">
+                        <span>{{ sub.name }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+
+
+    </div>
+
+    <div class="mobilslidermenu" >
+        <div class="head" >
+            <span>Menu</span>
+            <i class="fa-solid fa-xmark" ></i>
+        </div>
+        <div class="mobilsliderbox" >
+            <div class="mobislidrrkategoriya" >
+                <span>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg' %}" >
+                        <g clip-path="url(#clip0_412_2100)" >
+                            <path d="M5.33334 5.33333H13.3333V13.3333H5.33334V5.33333Z" stroke="black" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M18.6667 5.33333H26.6667V13.3333H18.6667V5.33333Z" stroke="black" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.33334 18.6667H13.3333V26.6667H5.33334V18.6667Z" stroke="black" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M18.6667 22.6667C18.6667 23.7275 19.0881 24.7449 19.8382 25.4951C20.5884 26.2452 21.6058 26.6667 22.6667 26.6667C23.7275 26.6667 24.7449 26.2452 25.4951 25.4951C26.2452 24.7449 26.6667 23.7275 26.6667 22.6667C26.6667 21.6058 26.2452 20.5884 25.4951 19.8382C24.7449 19.0881 23.7275 18.6667 22.6667 18.6667C21.6058 18.6667 20.5884 19.0881 19.8382 19.8382C19.0881 20.5884 18.6667 21.6058 18.6667 22.6667Z"
+                                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_412_2100" >
+                                <rect width="32" height="32" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    Katalog</span>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                    xmlns="http://www.w3.org/2000/svg' %}" >
+                    <path d="M12 8L20 16L12 24" stroke="#AFAFAF" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+
+            </div>
+            <div>
+                <a href="" >
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg' %}" >
+                        <g clip-path="url(#clip0_830_1259)" >
+                            <path
+                                d="M26 16.7627L16 26.6667L5.99999 16.7627C5.3404 16.1208 4.82085 15.3494 4.47406 14.4968C4.12727 13.6443 3.96074 12.7293 3.98498 11.8092C4.00921 10.8892 4.22368 9.98418 4.61487 9.15111C5.00606 8.31805 5.56551 7.575 6.25798 6.96877C6.95044 6.36254 7.76093 5.90625 8.63841 5.62864C9.51588 5.35103 10.4413 5.25811 11.3565 5.35573C12.2716 5.45336 13.1567 5.73941 13.9558 6.19587C14.755 6.65234 15.451 7.26933 16 8.008C16.5514 7.2747 17.2482 6.66309 18.0468 6.21147C18.8454 5.75985 19.7287 5.47793 20.6412 5.38336C21.5538 5.28879 22.4761 5.3836 23.3504 5.66186C24.2246 5.94011 25.032 6.39583 25.7221 7.00048C26.4121 7.60514 26.9699 8.34571 27.3606 9.17586C27.7512 10.006 27.9663 10.9078 27.9924 11.8249C28.0185 12.742 27.855 13.6547 27.5122 14.5057C27.1693 15.3567 26.6545 16.1278 26 16.7707"
+                                stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_830_1259" >
+                                <rect width="32" height="32" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>Saralanganlar
+                </a>
+
+
+            </div>
+            <div>
+                <a href="" >
+                    <svg width="32" height="34" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg' %}" >
+                        <g clip-path="url(#clip0_830_838)" >
+                            <path
+                                d="M5.33334 26.625C5.33334 27.3543 5.61429 28.0538 6.11439 28.5695C6.61449 29.0853 7.29277 29.375 8.00001 29.375C8.70725 29.375 9.38553 29.0853 9.88563 28.5695C10.3857 28.0538 10.6667 27.3543 10.6667 26.625C10.6667 25.8957 10.3857 25.1962 9.88563 24.6805C9.38553 24.1647 8.70725 23.875 8.00001 23.875C7.29277 23.875 6.61449 24.1647 6.11439 24.6805C5.61429 25.1962 5.33334 25.8957 5.33334 26.625Z"
+                                stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M20 26.625C20 27.3543 20.281 28.0538 20.781 28.5695C21.2811 29.0853 21.9594 29.375 22.6667 29.375C23.3739 29.375 24.0522 29.0853 24.5523 28.5695C25.0524 28.0538 25.3333 27.3543 25.3333 26.625C25.3333 25.8957 25.0524 25.1962 24.5523 24.6805C24.0522 24.1647 23.3739 23.875 22.6667 23.875C21.9594 23.875 21.2811 24.1647 20.781 24.6805C20.281 25.1962 20 25.8957 20 26.625Z"
+                                stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M22.6667 23.875H8.00001V4.625H5.33334" stroke="#303030" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 7.375L26.6667 8.75L25.3333 18.375H8" stroke="#303030" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_830_838" >
+                                <rect width="32" height="33" fill="white" transform="translate(0 0.5)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    Savatda
+                </a>
+
+
+            </div>
+
+        </div>
+        <div class="mobilsliderbottom" >
+            <span>Murojaat uchun:</span>
+            <a href="tel:55-500-00-35" >55-500-00-35</a>
+        </div>
+    </div>
+<div class="slideMenu_menu_box" id="slideMenu_menuid">
+    <ul class="SlideMenu-menu">
+        {% for cat in menus %}
+            <li class="{% if cat.children.exists %}menu-item-has-children{% endif %}">
+                <a class="{% if cat.children.exists %}hasArrow{% endif %}" href="/magazin/folder/{{ cat.slug }}">
+                    <span>{{ cat.safe_translation_getter:"name" }}</span>
+                </a>
+
+                {% if cat.children.exists %}
+                    <ul class="sub_menu">
+                        <li><a href="/magazin/folder/{{ cat.slug }}">Назад</a></li>
+                        <li class="parentItem">
+                            <a href="/magazin/folder/{{ cat.slug }}">
+                                <span>{{ cat.safe_translation_getter:"name" }}</span>
+                            </a>
+                        </li>
+                        {% for child in cat.children.all %}
+                            <li class="{% if child.children.exists %}menu-item-has-children{% endif %}">
+                                <a href="/magazin/folder/{{ child.slug }}">
+                                    <span>{{ child.safe_translation_getter:"name" }}</span>
+                                </a>
+                                {# рекурсия: агар бола-чиқса яна sub_menu қўйиш мумкин #}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" ></script>
+
+    <script src="{% static 'js/all.min.js' %}" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" ></script>
+    <script src="{% static 'js/main.js' %}" ></script>
+
+
+
+</body>
+
+</html>

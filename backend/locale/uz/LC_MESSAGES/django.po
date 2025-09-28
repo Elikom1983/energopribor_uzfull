@@ -1,0 +1,579 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 11:15+0000\n"
+"PO-Revision-Date: 2022-04-22 11:24+0000\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: category/models.py:11
+msgid "Parent"
+msgstr ""
+
+#: category/models.py:14 pages/models.py:87
+msgid "Name"
+msgstr ""
+
+#: category/models.py:16 store/models.py:19
+msgid "Slug"
+msgstr ""
+
+#: category/models.py:17 store/models.py:21
+msgid "Images"
+msgstr ""
+
+#: category/models.py:21 store/models.py:23
+msgid "Category"
+msgstr ""
+
+#: category/models.py:22
+msgid "Categories"
+msgstr ""
+
+#: pages/forms.py:6 templates/pages/checkout.html:184
+#: templates/store/checkout.html:184
+msgid "Имя"
+msgstr ""
+
+#: pages/forms.py:7 pages/models.py:89
+msgid "Email"
+msgstr ""
+
+#: pages/forms.py:8
+msgid "Название"
+msgstr ""
+
+#: pages/forms.py:9
+msgid "Сообщение"
+msgstr ""
+
+#: pages/models.py:8 pages/models.py:34 pages/models.py:60 store/models.py:16
+msgid "Title"
+msgstr ""
+
+#: pages/models.py:38
+msgid "url"
+msgstr ""
+
+#: pages/models.py:49
+msgid "Main Image"
+msgstr ""
+
+#: pages/models.py:61 store/models.py:14
+msgid "Description"
+msgstr ""
+
+#: pages/models.py:63
+msgid "Image"
+msgstr ""
+
+#: pages/models.py:75 pages/models.py:92 pages/models.py:107
+msgid "Image 1"
+msgstr ""
+
+#: pages/models.py:76
+msgid "Link"
+msgstr ""
+
+#: pages/models.py:88
+msgid "Position"
+msgstr ""
+
+#: pages/models.py:93
+msgid "Phone"
+msgstr ""
+
+#: pages/models.py:94
+msgid "Telegram"
+msgstr ""
+
+#: pages/models.py:95
+msgid "Instagram"
+msgstr ""
+
+#: pages/models.py:113 pages/models.py:114
+msgid "Hit Of Sales"
+msgstr ""
+
+#: store/models.py:13
+msgid "Product Name"
+msgstr ""
+
+#: store/models.py:15
+msgid "Short Description"
+msgstr ""
+
+#: store/models.py:18
+msgid "Meta"
+msgstr ""
+
+#: store/models.py:20
+msgid "Price"
+msgstr ""
+
+#: store/models.py:22
+msgid "Is Available"
+msgstr ""
+
+#: store/models.py:24
+msgid "Top"
+msgstr ""
+
+#: store/models.py:25
+msgid "New"
+msgstr ""
+
+#: store/models.py:26
+msgid "V nalichii"
+msgstr ""
+
+#: store/models.py:27
+msgid "Price po zaprosu"
+msgstr ""
+
+#: store/models.py:28
+msgid "Created Date"
+msgstr ""
+
+#: store/models.py:29
+msgid "Modified Date"
+msgstr ""
+
+#: store/models.py:38
+msgid "Product"
+msgstr ""
+
+#: store/models.py:39
+msgid "Products"
+msgstr ""
+
+#: store/models.py:80
+msgid "meta"
+msgstr ""
+
+#: templates/home.html:43
+msgid "welcome to strnix"
+msgstr ""
+
+#: templates/home.html:50
+msgid "What We Offers"
+msgstr ""
+
+#: templates/home.html:75 templates/home.html:128 templates/home.html:223
+msgid "Strnix is important"
+msgstr ""
+
+#: templates/home.html:78 templates/home.html:131 templates/home.html:226
+msgid "For Controling Your Energy Production"
+msgstr ""
+
+#: templates/home.html:180
+msgid "WHO ARE STRNIX "
+msgstr ""
+
+#: templates/home.html:183
+msgid "Company Testimonials "
+msgstr ""
+
+#: templates/includes/footer.html:16 templates/pages/about.html:483
+#: templates/pages/category.html:103 templates/store/category.html:106
+msgid "Energy Efficiency Solutions"
+msgstr ""
+
+#: templates/includes/footer.html:23 templates/pages/about.html:491
+#: templates/pages/category.html:111 templates/store/category.html:114
+msgid "Solar panel Commissioning"
+msgstr ""
+
+#: templates/includes/footer.html:76 templates/pages/about.html:546
+#: templates/pages/category.html:166 templates/store/category.html:169
+msgid "Battery backup Generator"
+msgstr ""
+
+#: templates/includes/footer.html:83 templates/pages/about.html:554
+#: templates/pages/category.html:174 templates/store/category.html:177
+msgid "WHOLE HOUSE SURGE PROTECTION"
+msgstr ""
+
+#: templates/includes/footer.html:99 templates/pages/about.html:570
+#: templates/pages/category.html:190 templates/store/category.html:193
+msgid "Contact Us"
+msgstr ""
+
+#: templates/includes/footer.html:111 templates/pages/about.html:582
+#: templates/pages/category.html:202 templates/pages/contact.html:194
+#: templates/store/category.html:205
+msgid "Visit The Office"
+msgstr ""
+
+#: templates/includes/footer.html:112 templates/pages/about.html:583
+#: templates/pages/category.html:203 templates/store/category.html:206
+msgid "102 Taily End Rd, NY"
+msgstr ""
+
+#: templates/includes/footer.html:122 templates/pages/about.html:593
+#: templates/pages/category.html:213 templates/store/category.html:216
+msgid "Phone Enquiry"
+msgstr ""
+
+#: templates/includes/footer.html:124 templates/pages/about.html:595
+#: templates/pages/category.html:215 templates/pages/checkout.html:222
+#: templates/pages/contact.html:290 templates/pages/partners.html:61
+#: templates/store/category.html:218 templates/store/checkout.html:222
+#: templates/store/product_detail.html:179
+#: templates/store/product_detail.html:180
+msgid "nomer"
+msgstr ""
+
+#: templates/includes/footer.html:135 templates/pages/about.html:606
+#: templates/pages/category.html:226 templates/pages/contact.html:221
+#: templates/store/category.html:229
+msgid "Send Email"
+msgstr ""
+
+#: templates/includes/footer.html:137 templates/pages/about.html:608
+#: templates/pages/category.html:228 templates/store/category.html:231
+msgid "email"
+msgstr ""
+
+#: templates/includes/footer.html:150 templates/pages/about.html:621
+#: templates/pages/category.html:241 templates/store/category.html:244
+msgid "Quick Links"
+msgstr ""
+
+#: templates/includes/footer.html:154 templates/includes/header.html:148
+#: templates/includes/header.html:214 templates/includes/header.html:302
+#: templates/pages/about.html:166 templates/pages/about.html:207
+#: templates/pages/about.html:268 templates/pages/about.html:625
+#: templates/pages/category.html:245 templates/store/category.html:248
+msgid "О компании"
+msgstr ""
+
+#: templates/includes/footer.html:155 templates/includes/header.html:145
+#: templates/includes/header.html:209 templates/includes/header.html:301
+#: templates/pages/about.html:171 templates/pages/about.html:211
+#: templates/pages/about.html:274 templates/pages/about.html:626
+#: templates/pages/category.html:246 templates/pages/contact.html:180
+#: templates/store/category.html:249
+msgid "Контакты"
+msgstr ""
+
+#: templates/includes/footer.html:156 templates/includes/header.html:143
+#: templates/includes/header.html:206 templates/includes/header.html:299
+#: templates/pages/about.html:627 templates/pages/category.html:247
+#: templates/store/category.html:250
+msgid "Партнер"
+msgstr ""
+
+#: templates/includes/footer.html:157 templates/includes/header.html:190
+#: templates/includes/header.html:281 templates/pages/about.html:628
+#: templates/pages/category.html:248 templates/pages/checkout.html:158
+#: templates/store/cart.html:11 templates/store/category.html:251
+#: templates/store/checkout.html:158
+msgid "Продукты"
+msgstr ""
+
+#: templates/includes/footer.html:158 templates/pages/about.html:169
+#: templates/pages/about.html:210 templates/pages/about.html:272
+#: templates/pages/about.html:629 templates/pages/category.html:249
+#: templates/store/category.html:252
+msgid "Команда"
+msgstr ""
+
+#: templates/includes/footer.html:168 templates/pages/about.html:639
+#: templates/pages/category.html:259 templates/store/category.html:262
+msgid "Our Services"
+msgstr ""
+
+#: templates/includes/footer.html:172 templates/pages/about.html:643
+#: templates/pages/category.html:263 templates/store/category.html:266
+msgid "Installation &amp; Monitoring"
+msgstr ""
+
+#: templates/includes/footer.html:173 templates/pages/about.html:644
+#: templates/pages/category.html:264 templates/store/category.html:267
+msgid "After Sales Service"
+msgstr ""
+
+#: templates/includes/footer.html:174 templates/pages/about.html:645
+#: templates/pages/category.html:265 templates/store/category.html:268
+msgid "Free Replacemrnt"
+msgstr ""
+
+#: templates/includes/footer.html:175 templates/pages/about.html:646
+#: templates/pages/category.html:266 templates/store/category.html:269
+msgid "Warrenty Claims"
+msgstr ""
+
+#: templates/includes/footer.html:176 templates/pages/about.html:647
+#: templates/pages/category.html:267 templates/store/category.html:270
+msgid "Energy Equipments"
+msgstr ""
+
+#: templates/includes/footer.html:188 templates/pages/about.html:659
+#: templates/pages/category.html:279 templates/store/category.html:282
+msgid "Project Gallery"
+msgstr ""
+
+#: templates/includes/footer.html:218 templates/pages/about.html:690
+#: templates/pages/category.html:310 templates/store/category.html:313
+msgid "Сайт разработан дизайн-студией"
+msgstr ""
+
+#: templates/includes/header.html:23 templates/includes/header.html:24
+#: templates/pages/about.html:66
+msgid "header email"
+msgstr ""
+
+#: templates/includes/header.html:27
+msgid "Telegram Link"
+msgstr ""
+
+#: templates/includes/header.html:28
+msgid "Facebook Link"
+msgstr ""
+
+#: templates/includes/header.html:29
+msgid "Instagram Link"
+msgstr ""
+
+#: templates/includes/header.html:42 templates/pages/about.html:84
+msgid "Korzina"
+msgstr ""
+
+#: templates/includes/header.html:80 templates/pages/about.html:122
+msgid "Позвонить нам"
+msgstr ""
+
+#: templates/includes/header.html:82 templates/pages/about.html:124
+msgid "Header Nomer"
+msgstr ""
+
+#: templates/includes/header.html:93 templates/pages/about.html:135
+msgid "Наш адрес"
+msgstr ""
+
+#: templates/includes/header.html:95 templates/pages/about.html:137
+msgid "Header Adress"
+msgstr ""
+
+#: templates/includes/header.html:106 templates/pages/about.html:148
+msgid "Почтовый адрес"
+msgstr ""
+
+#: templates/includes/header.html:108 templates/pages/about.html:150
+msgid "Header Email"
+msgstr ""
+
+#: templates/includes/header.html:124 templates/includes/header.html:186
+#: templates/includes/header.html:277
+msgid "Главная"
+msgstr ""
+
+#: templates/pages/about.html:339
+msgid "About us "
+msgstr ""
+
+#: templates/pages/about.html:353
+msgid "Helping Smart Comapnies With Better Integrated Solar Solutions"
+msgstr ""
+
+#: templates/pages/about.html:375
+msgid "About Paragraph 1"
+msgstr ""
+
+#: templates/pages/about.html:376
+msgid "About Paragraph 2"
+msgstr ""
+
+#: templates/pages/about.html:377
+msgid "About Paragraph 3"
+msgstr ""
+
+#: templates/pages/about.html:379
+msgid "About us Author"
+msgstr ""
+
+#: templates/pages/about2.html:18
+msgid "Submit"
+msgstr ""
+
+#: templates/pages/checkout.html:160 templates/store/cart.html:13
+#: templates/store/checkout.html:160
+msgid "Корзинка"
+msgstr ""
+
+#: templates/pages/checkout.html:162 templates/store/cart.html:15
+#: templates/store/checkout.html:162
+msgid "Оформление"
+msgstr ""
+
+#: templates/pages/checkout.html:170 templates/store/checkout.html:170
+msgid "Checkout"
+msgstr ""
+
+#: templates/pages/checkout.html:187 templates/store/checkout.html:187
+msgid "Фамилия"
+msgstr ""
+
+#: templates/pages/checkout.html:190 templates/store/checkout.html:190
+msgid "Адрес"
+msgstr ""
+
+#: templates/pages/checkout.html:194 templates/store/checkout.html:194
+msgid "Почта"
+msgstr ""
+
+#: templates/pages/checkout.html:198 templates/store/checkout.html:198
+msgid "Номер телефона"
+msgstr ""
+
+#: templates/pages/checkout.html:202 templates/store/checkout.html:202
+msgid "Комментарий (Не обезательно)"
+msgstr ""
+
+#: templates/pages/checkout.html:207 templates/store/checkout.html:207
+msgid "Отправить"
+msgstr ""
+
+#: templates/pages/checkout.html:217 templates/store/checkout.html:217
+msgid "Позвоните нам 24/7 для поддержки"
+msgstr ""
+
+#: templates/pages/contact.html:176
+msgid "Thanks for your message!"
+msgstr ""
+
+#: templates/pages/contact.html:196
+msgid "102 Taily End Road"
+msgstr ""
+
+#: templates/pages/contact.html:207
+msgid "Phone Inquiry"
+msgstr ""
+
+#: templates/pages/contact.html:209
+msgid "+1 (222) 303 4500"
+msgstr ""
+
+#: templates/pages/contact.html:210
+msgid "0800 12345"
+msgstr ""
+
+#: templates/pages/contact.html:223
+msgid "info@domain.com"
+msgstr ""
+
+#: templates/pages/contact.html:224
+msgid "Support@strnix.com"
+msgstr ""
+
+#: templates/pages/contact.html:239
+msgid "Don’t Hesitate To Contact Us"
+msgstr ""
+
+#: templates/pages/contact.html:271
+msgid "Send Request"
+msgstr ""
+
+#: templates/pages/contact.html:285
+msgid "Call Us 24/7 For Support"
+msgstr ""
+
+#: templates/pages/partners.html:7
+msgid "Партнеры"
+msgstr ""
+
+#: templates/pages/partners.html:22
+msgid ""
+"Наш интернет-магазин является официальным дилером представленных торговых "
+"марок. Это означает, что вся продукция действительно фирменная, никакого "
+"«серого импорта». На все товары распространяется гарантия производителя, а "
+"цены в нашем магазине соответствуют рекомендованным производителем."
+msgstr ""
+
+#: templates/pages/partners.html:60
+msgid "Наша эл. почта"
+msgstr ""
+
+#: templates/pages/partners.html:60
+msgid "energopribor.@gmail.com"
+msgstr ""
+
+#: templates/pages/partners.html:60
+msgid "Связаться с нами"
+msgstr ""
+
+#: templates/pages/team.html:10
+msgid "Наша команда"
+msgstr ""
+
+#: templates/pages/team.html:29 templates/pages/team.html:30
+#: templates/pages/team.html:32 templates/store/thanks.html:12
+msgid "Перейти к товарам"
+msgstr ""
+
+#: templates/store/cart.html:39 templates/store/product_detail.html:38
+#: templates/store/product_detail.html:43
+msgid "Цена"
+msgstr ""
+
+#: templates/store/cart.html:39 templates/store/cart.html:59
+msgid "сум"
+msgstr ""
+
+#: templates/store/cart.html:51
+msgid "Список"
+msgstr ""
+
+#: templates/store/cart.html:69
+msgid "Перейти к оформлению"
+msgstr ""
+
+#: templates/store/cart.html:71
+msgid "Продолжить покупки"
+msgstr ""
+
+#: templates/store/product_detail.html:43
+msgid "по запросу"
+msgstr ""
+
+#: templates/store/product_detail.html:177
+msgid "Got any Questions?"
+msgstr ""
+
+#: templates/store/product_detail.html:183
+#: templates/store/product_detail.html:184
+msgid "support@strnix.net"
+msgstr ""
+
+#: templates/store/product_detail.html:214
+msgid "Похожие товары"
+msgstr ""
+
+#: templates/store/store.html:68
+msgid "No result found. Please try again."
+msgstr ""
+
+#: templates/store/thanks.html:11
+msgid "Спасибо за покупку!"
+msgstr ""
+
+#~ msgid "Residential Solutions"
+#~ msgstr "тест"
+
+#~ msgid "Commercial solutions"
+#~ msgstr "Тест"

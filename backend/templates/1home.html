@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<div class="page-wrapper">
+  <!-- Preloader -->
+
+  <!-- Main Header -->
+  <!-- End Main Header -->
+
+  <!-- Banner Section -->
+  <section class="banner-section banner-one">
+    <div class="banner-carousel strnix-carousel owl-theme owl-carousel
+              owl-loaded owl-drag" data-options="{&quot;loop&quot;: true, &quot;margin&quot;: 0,
+                &quot;autoheight&quot;:true, &quot;lazyload&quot;:true,
+                &quot;nav&quot;: true, &quot;dots&quot;: true, &quot;autoplay&quot;:
+                true, &quot;autoplayTimeout&quot;: 6000, &quot;smartSpeed&quot;:
+                300, &quot;responsive&quot;:{ &quot;0&quot; :{ &quot;items&quot;:
+                &quot;1&quot; }, &quot;768&quot; :{ &quot;items&quot; :
+                &quot;1&quot; } , &quot;1000&quot;:{ &quot;items&quot; :
+                &quot;1&quot; }}}">
+      <!-- Slide Item -->
+
+
+      <!-- Slide Item -->
+
+
+      <!-- Slide Item -->
+
+
+      <div class="owl-stage-outer">
+        <div class="owl-stage">
+          {% for item in banner %}
+          <div class="owl-item" style="width: 1423px;">
+            <div class="slide-item">
+              <div class="image-layer" style="background-image:url('{{ item.image.url }}')"></div>
+              <div class="auto-container">
+                <div class="content-box">
+                  <div class="content">
+                    <div class="inner">
+                      <div class="sub-title"><span class="icon fa
+                                fa-solar-panel"></span> <span class="txt">
+                          {% trans 'welcome to strnix' %}
+                        </span>
+                        <span class="icon fa fa-solar-panel"></span>
+                      </div>
+                      <h1 class="for_change">{{item.title}}</h1>
+                      <div class="links-box"><a href="{% url 'store_category' %}" class="theme-btn btn-style-one">
+                          <div class="btn-title"><span class="btn-txt">
+                              {% trans 'What We Offers' %}
+                            </span><span class="btn-icon"><span class="icon flaticon-arrows-11"></span>
+                            </span></div>
+                        </a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <!--Programs Section-->
+  <section class="programs-section-one">
+    <div class="bg-pattern-layer"></div>
+
+    <div class="auto-container">
+      <div class="sec-title centered wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms">
+        <div class="upper-text">{% trans 'Strnix is important' %} <span class="icon
+                    flaticon-flash"></span></div>
+        <h2>Новые товары</h2>
+        <div class="subtitle">{% trans 'For Controling Your Energy Production' %}</div>
+        <div class="bottom-dots clearfix">
+          <span class="dot line-dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <div >
+
+
+        <div class=" owl-stage-outer">
+          <div class="owl-stage class1">
+            {% for item in new %}
+            <div class="owl-item class2">
+              <div class="program-block">
+                <div class="inner-box">
+                  <div class="image-box image-padding">
+                    <figure class="image"><img src="{{item.image.url}}" alt=""></figure>
+                    <div class="hover-box">
+                      <div class="hover-inner">
+                        <div class="content">
+                          <div class="icon-box">
+                            <span class="flaticon-chimney"></span>
+                          </div>
+                          <div class="text">{{item.short_description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h3><a href="{{item.get_url}}">{{item.product_name}}</a></h3>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="programs-section-one">
+    <div class="bg-pattern-layer"></div>
+
+    <div class="auto-container">
+      <div class="sec-title centered wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms">
+        <div class="upper-text">{% trans 'Strnix is important' %} <span class="icon
+                    flaticon-flash"></span></div>
+        <h2>Топ товары</h2>
+        <div class="subtitle">{% trans 'For Controling Your Energy Production' %}</div>
+        <div class="bottom-dots clearfix">
+          <span class="dot line-dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <div class="program-carousel new__goods strnix-carousel owl-theme owl-carousel
+      owl-loaded owl-drag">
+
+        <div class=" owl-stage-outer">
+          <div class="owl-stage class1">
+            {% for item in top %}
+            <div class="owl-item class2">
+              <div class="program-block">
+                <div class="inner-box">
+                  <div class="image-box image-padding">
+                    <figure class="image"><img src="{{item.image.url}}" alt=""></figure>
+                    <div class="hover-box">
+                      <div class="hover-inner">
+                        <div class="content">
+                          <div class="icon-box">
+                            <span class="flaticon-chimney"></span>
+                          </div>
+                          <div class="text">{{item.short_description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--Newsletter Section-->
+  <section class="reviews-section">
+    <div class="image-layer"></div>
+    <div class="auto-container">
+      <div class="sec-title light-title centered">
+        <div class="upper-text">{% trans 'WHO ARE STRNIX ' %}<span class="icon
+                    flaticon-flash"></span></div>
+        <h2>Бренды</h2>
+        <div class="subtitle">{% trans 'Company Testimonials ' %}</div>
+        <div class="bottom-dots clearfix">
+          <span class="dot line-dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="sponsors-outer">
+      <div class="auto-container">
+        <!--Sponsors Carousel-->
+        <div class="sponsors-carousel strnix-carousel owl-theme
+              owl-carousel owl-loaded">
+
+
+          <div class="owl-stage-outer">
+            <div class="owl-stage class1">
+              {% for item in brand %}
+              <div class="owl-item class2">
+                <div class="slide-item">
+                  <figure class="image-box" style="margin: ;"><img src="{{item.image.url}}" alt=""></figure>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="programs-section-one">
+    <div class="bg-pattern-layer"></div>
+
+    <div class="auto-container">
+      <div class="sec-title centered wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms">
+        <div class="upper-text">{% trans 'Strnix is important' %} <span class="icon
+                    flaticon-flash"></span></div>
+        <h2>Наши Клиенты</h2>
+        <div class="subtitle">{% trans 'For Controling Your Energy Production' %}</div>
+      </div>
+
+      <div class="program-carousel strnix-carousel owl-theme owl-carousel
+              owl-loaded owl-drag">
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <!--Program Block-->
+
+        <div class="owl-stage-outer">
+          <div class="owl-stage class1">
+            {% for item in clients %}
+            <div class="owl-item class2">
+              <div class="program-block for_ch">
+                <div class="inner-box">
+                  <div class="image-box image-padding">
+                    <figure class="image"><img src="{{ item.image.url }}" alt=""></figure>
+
+                  </div>
+                  <h3><a href="{{ item.url }}">{{item.title}}</a></h3>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Services Section-->
+
+
+
+  <!--News Section-->
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load mptt_tags %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block title %} {{single_product.title}} {% endblock %}
+{% block meta %}
+<meta property="og:title" content="{{single_product.meta|safe}}" />
+{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
+<link rel="stylesheet" href="{% static 'js/my-script.js' %}">
+{% endblock %}
+{% block content %}
+<section class="img_section">
+    <div class="for__img_details"><img src="{{single_product.image.url}}" alt=""></div>
+</section>
+
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row rowDetails clearfix">
+
+            <!--Content Side-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-content">
+
+                    <div class="post-details bg_wt">
+                        <div class="image-box">
+                            <figure class="image"><img src="{{single_product.image.url}}" alt=""></figure>
+                            <div class="post-date">
+                                <span class="day"><a href="{% url 'add_cart'  single_product.id %}"><i
+                                            class="fas fa-shopping-cart"></i></a></span>
+                            </div>
+                        </div>
+                        <div class="lower-box">
+                            <h2 class="for_md">{{single_product.product_name}}</h2>
+                            {% if single_product.price %}
+                            <div class="meta-info">
+                                <p>{% trans 'Цена' %}:</p>
+                                <p>{{single_product.price}}</p>
+                            </div>
+                            {% else %}
+                            <div class="meta-info">
+                                <p>{% trans 'Цена' %}: {% trans 'по запросу' %}</p>
+                            </div>
+                            {% endif %}
+                            <div class="text" style="text-align:justify;">
+                                {{single_product.description|safe}}
+
+
+                                <div class="two-col row clearfix" style="display:none">
+                                    <div class="image-column col-md-6 col-sm-12">
+                                        <div class="image"><img src="images/resource/blog-image-1.jpg" alt=""></div>
+                                    </div>
+
+                                    <div class="text-column col-md-6 col-sm-12">
+                                        <h3>Upgrade Solar Panels</h3>
+                                        <p class="sub-text">get your panels in good shape</p>
+                                        <p>Aenean volutpa sem sit amet ullamcorper gravida, tortor arcu molestie risus
+                                            bibenm urna enim nulla pellentesque.</p>
+                                        <p>Porta arcu velit aucibus kodales dolor rhon cus sed. Curabitur lacinia massa.
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!--Comments Area-->
+
+
+                    <!--Leave Comment Form-->
+
+
+                </div>
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar blog-sidebar">
+                    <!--Sidebar Widget-->
+                    <!-- <div class="sidebar-widget search-box">
+                        <form method="post" action="blog.html">
+                            <div class="form-group">
+                                <input type="search" name="search-field" value="" placeholder="Search.." required="">
+                                <button type="submit"><span class="icon fa fa-search"></span></button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="sidebar-widget archives">
+                        <div class="widget-inner">
+                            <div class="sidebar-title">
+                                <h3>Categories</h3>
+                                <div class="bottom-dots clearfix">
+                                    <span class="dot line-dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+
+                            <ul>
+                                <li><a href="#">Solar Maintenance</a></li>
+                                <li class="active"><a href="#">Panels Installation</a></li>
+                                <li><a href="#">Replacement Upgrade</a></li>
+                                <li><a href="#">Commercial Services</a></li>
+                                <li><a href="#">Thermal Systems</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget recent-posts">
+                        <div class="widget-inner">
+                            <div class="sidebar-title">
+                                <h3>Recent Posts</h3>
+                                <div class="bottom-dots clearfix">
+                                    <span class="dot line-dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+
+                            <div class="post">
+                                <figure class="post-thumb"><img src="images/resource/post-thumb-1.jpg" alt=""></figure>
+                                <h3 class="text"><a href="#">Home Solar Power, Reuse  By Maintainance</a></h3>
+                                <div class="date">Posted: 23 Oct 2019</div>
+                            </div>
+
+                            <div class="post">
+                                <figure class="post-thumb"><img src="images/resource/post-thumb-2.jpg" alt=""></figure>
+                                <h3 class="text"><a href="#">Engineering According To Individual Needs</a></h3>
+                                <div class="date">Posted: 23 Oct 2019</div>
+                            </div>
+
+                            <div class="post">
+                                <figure class="post-thumb"><img src="images/resource/post-thumb-3.jpg" alt=""></figure>
+                                <h3 class="text"><a href="#">Home Solar Power, Reuse  By Maintainance</a></h3>
+                                <div class="date">Posted: 23 Oct 2019</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget popular-tags">
+                        <div class="widget-inner">
+                            <div class="sidebar-title">
+                                <h3>Popular Tags</h3>
+                                <div class="bottom-dots clearfix">
+                                    <span class="dot line-dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <ul class="tags-list clearfix">
+                                <li><a href="#">Industry</a></li>
+                                <li><a href="#">Construction</a></li>
+                                <li><a href="#">Products</a></li>
+                                <li><a href="#">Power &amp; Energy</a></li>
+                                <li><a href="#">Manufacture</a></li>
+                                <li><a href="#">Chemical</a></li>
+                                <li><a href="#">Solar Plates</a></li>
+                                <li><a href="#">Environment</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <!--Sidebar Widget-->
+                    <div class="sidebar-widget info-widget">
+                        <div class="widget-inner">
+                            <div class="image"><a href="#"><img src="images/resource/featured-image-5.jpg" alt=""></a>
+                            </div>
+                            <div class="lower">
+                                <div class="subtitle">{% trans 'Got any Questions?' %}</div>
+                                <div class="icon-box"><span class="flaticon-telephone-1"></span></div>
+                                <div class="phone"><a href="tel:{% trans 'nomer' %}">
+                                        <h3>{% trans 'nomer' %}</h3>
+                                    </a></div>
+                                <div class="email">
+                                <a href="mailto:{%  trans 'support@strnix.net' %}">
+                                {% trans 'support@strnix.net' %}
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse show clearfix">
+
+                        <ul class="navigation clearfix details-nav">
+                            {% recursetree cot %}
+                            <li><a href="../../../../store/category/{{ node.slug }}">{{ node.name }}</a></li>
+                            {% endrecursetree %}
+
+                        </ul>
+
+
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</div>
+<section>
+    
+
+      <div class="auto-container" style="margin-bottom: 30px;">
+        <div class=" wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms;
+              animation-delay: 0ms; animation-name: fadeInUp;">
+          
+          <h2>{% trans 'Похожие товары' %}</h2>
+         
+         
+        </div>
+
+        <div class="program-carousel new__goods strnix-carousel owl-theme owl-carousel
+              owl-loaded owl-drag">
+          <!--Program Block-->
+
+          <div class="owl-stage-outer">
+          <div class="owl-stage class1">
+            {% for item in new %}
+            <div class="owl-item class2">
+              <div class="program-block">
+                <div class="inner-box">
+                  <div class="image-box image-padding">
+                    <figure class="image"><img src="{{item.image.url}}" alt=""></figure>
+                    <div class="hover-box">
+                      <div class="hover-inner">
+                        <div class="content">
+                          <div class="icon-box">
+                            <span class="flaticon-chimney"></span>
+                          </div>
+                          <div class="text">{{item.short_description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h3><a href="{{item.get_url}}">{{item.product_name}}</a></h3>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        
+        </div>
+      </div>
+    </section>
+{% endblock %}

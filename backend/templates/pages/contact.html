@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% block link %}
+<link type="text/css" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans_old:400,500,700|Google+Sans+Text:400">
+<link type="text/css" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Google+Sans+Text:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93">
+{% endblock %}
+{% block css %}
+<style>
+    .gm-control-active>img {
+        box-sizing: content-box;
+        display: none;
+        left: 50%;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .gm-control-active>img:nth-child(1) {
+        display: block
+    }
+
+    .gm-control-active:hover>img:nth-child(1),
+    .gm-control-active:active>img:nth-child(1),
+    .gm-control-active:disabled>img:nth-child(1) {
+        display: none
+    }
+
+    .gm-control-active:hover>img:nth-child(2),
+    .gm-control-active:active>img:nth-child(3),
+    .gm-control-active:disabled>img:nth-child(4) {
+        display: block
+    }
+</style>
+<style>
+    .gm-ui-hover-effect {
+        opacity: .6
+    }
+
+    .gm-ui-hover-effect:hover {
+        opacity: 1
+    }
+</style>
+<style>
+    .gm-style .gm-style-cc a,
+    .gm-style .gm-style-cc button,
+    .gm-style .gm-style-cc span,
+    .gm-style .gm-style-mtc div {
+        font-size: 10px;
+        box-sizing: border-box
+    }
+
+    .gm-style .gm-style-cc a,
+    .gm-style .gm-style-cc button,
+    .gm-style .gm-style-cc span {
+        outline-offset: 3px
+    }
+</style>
+<style>
+    @media print {
+
+        .gm-style .gmnoprint,
+        .gmnoprint {
+            display: none
+        }
+    }
+
+    @media screen {
+
+        .gm-style .gmnoscreen,
+        .gmnoscreen {
+            display: none
+        }
+    }
+</style>
+<style>
+    .dismissButton {
+        background-color: #fff;
+        border: 1px solid #dadce0;
+        color: #1a73e8;
+        border-radius: 4px;
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        height: 36px;
+        cursor: pointer;
+        padding: 0 24px
+    }
+
+    .dismissButton:hover {
+        background-color: rgba(66, 133, 244, 0.04);
+        border: 1px solid #d2e3fc
+    }
+
+    .dismissButton:focus {
+        background-color: rgba(66, 133, 244, 0.12);
+        border: 1px solid #d2e3fc;
+        outline: 0
+    }
+
+    .dismissButton:focus:not(:focus-visible) {
+        background-color: #fff;
+        border: 1px solid #dadce0;
+        outline: none
+    }
+
+    .dismissButton:focus-visible {
+        background-color: rgba(66, 133, 244, 0.12);
+        border: 1px solid #d2e3fc;
+        outline: 0
+    }
+
+    .dismissButton:hover:focus {
+        background-color: rgba(66, 133, 244, 0.16);
+        border: 1px solid #d2e2fd
+    }
+
+    .dismissButton:hover:focus:not(:focus-visible) {
+        background-color: rgba(66, 133, 244, 0.04);
+        border: 1px solid #d2e3fc
+    }
+
+    .dismissButton:hover:focus-visible {
+        background-color: rgba(66, 133, 244, 0.16);
+        border: 1px solid #d2e2fd
+    }
+
+    .dismissButton:active {
+        background-color: rgba(66, 133, 244, 0.16);
+        border: 1px solid #d2e2fd;
+        box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15)
+    }
+
+    .dismissButton:disabled {
+        background-color: #fff;
+        border: 1px solid #f1f3f4;
+        color: #3c4043
+    }
+</style>
+<style>
+    .gm-style-moc {
+        background-color: rgba(0, 0, 0, 0.45);
+        pointer-events: none;
+        text-align: center;
+        transition: opacity ease-in-out
+    }
+
+    .gm-style-mot {
+        color: white;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 22px;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%)
+    }
+</style>
+<style>
+    .gm-style img {
+        max-width: none;
+    }
+
+    .gm-style {
+        font: 400 11px Roboto, Arial, sans-serif;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<section class="contact-section contact-page">
+    {% if thanks %}
+    <div class="main__content_title" style="margin-left: 34% !important; height: 200px;">
+        <h2 class="main__content_description">{% trans 'Thanks for your message!' %}</h2>
+    </div>
+    {% else %}
+    <div class="main__content_title">
+        <h2 class="main__content_description">{% trans 'Контакты' %}</h2>
+    </div>
+    {% endif %}
+    <div class="auto-container">
+
+        {% if not thanks %}
+        <div class="info-blocks">
+            <div class="row clearfix">
+                <!--Info Block-->
+                <div class="info-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="0ms"
+                    data-wow-duration="2000ms"
+                    style="visibility: visible; animation-duration: 2000ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                    <div class="inner">
+                        <div class="icon"><i class="fas fa-map-marker-alt for__icon_info"></i></div>
+                        <strong>{% trans 'Visit The Office' %}</strong>
+                        <ul class="info">
+                            <li>{% trans '102 Taily End Road' %}</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Info Block-->
+                <div class="info-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="300ms"
+                    data-wow-duration="2000ms"
+                    style="visibility: visible; animation-duration: 2000ms; animation-delay: 300ms; animation-name: fadeInUp;">
+                    <div class="inner">
+                        <div class="icon"><i class="fas fa-phone-alt for__icon_info"></i>
+                        </div>
+                        <strong>{% trans 'Phone Inquiry' %}</strong>
+                        <ul class="info">
+                            <li><a href="tel:{% trans '+1 (222) 303 4500' %}">{% trans '+1 (222) 303 4500' %}</a></li>
+                            <li><a href="tel:{% trans '0800 12345' %}">{% trans '0800 12345' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Info Block-->
+                <div class="info-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="600ms"
+                    data-wow-duration="2000ms"
+                    style="visibility: visible; animation-duration: 2000ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                    <div class="inner">
+                        <div class="icon"><i class="fas fa-envelope for__icon_info"></i>
+                        </div>
+                        <strong>{% trans 'Send Email' %}</strong>
+                        <ul class="info">
+                            <li><a href="mailto:{% trans 'info@domain.com' %}">{% trans 'info@domain.com' %}</a></li>
+                            <li><a href="mailto:{% trans 'Support@strnix.com' %}">{% trans 'Support@strnix.com' %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="content-box clearfix wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms"
+            style="visibility: visible; animation-duration: 2000ms; animation-delay: 0ms; animation-name: fadeInUp;">
+            {% if not thanks %}
+            <div class="form-box clearfix">
+
+                <div class="sec-title light-title">
+                    <h2 style="color: white;">{% trans 'Don’t Hesitate To Contact Us' %}</h2>
+                    <div class="bottom-dots clearfix">
+                        <span class="dot line-dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                <div class="default-form contact-form">
+                    <form method="POST" action="" id="contact-form" novalidate="novalidate">
+                        {% csrf_token %}
+
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                {{ form.name }}
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                {{ form.subject }}
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 form-group">
+                                {{ form.message }}
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 form-group">
+                                <button type="submit" class="theme-btn btn-style-eight">
+                                    <div class="btn-title"><span class="btn-txt">{% trans 'Send Request' %}</span><span
+                                            class="btn-icon"><span class="icon flaticon-arrows-11"></span> </span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            {% endif %}
+            {% if not thanks %}
+            <div class="image-layer" style="background-image: url(images/background/bg-image-9.jpg);">
+                <div class="info-box">
+                    <div class="subtitle">{% trans 'Call Us 24/7 For Support' %}</div>
+                    <div class="phone">
+                        <span class="icon">
+                            <i class="fas fa-phone-alt for__icon_info"></i>
+                        </span>
+                        <a href="tel:{% trans 'nomer' %}">{% trans 'nomer' %}</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if not thanks %}
+<!--Map Section-->
+<section class="map-section">
+    <!--Map Outer-->
+    <div class="map-outer">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.880963990857!2d69.2512830807852!3d41.354940987360294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x512314804ae7bcc1!2zNDHCsDIxJzE3LjgiTiA2OcKwMTUnMTAuOCJF!5e0!3m2!1sru!2s!4v1650887450329!5m2!1sru!2s"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+</section>
+{% endif %}
+{% endblock %}

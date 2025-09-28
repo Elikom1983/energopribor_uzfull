@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+  <h2 class="page-title_desc">{% trans 'Наша команда' %}</h2>
+</div>
+
+<div class="container">
+<div class="team-content row">
+{% for item in team %}
+<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6">
+    <div class="team-content_block team-block">
+      <div class="team-content_img">
+        <img src="{{item.image.url}}" alt="">
+      </div>
+      <div class="team-content_bottom">
+        <p class="team-content_text">{{item.position}}</p>
+        <h5 class="team-content_desc">{{item.name}}</h5>
+        <div class="for__b_icons"><a href="{{item.telegram}}"><i class="fab fa-telegram-plane"></i></a></i> <a href="{{item.instagram}}"><i class="fab fa-instagram"></i></a></div>
+      </div>
+      <div class="team-content_box">
+        <p class="team-box_title">{{item.position}}</p>
+        <h5 class="team-content_name">{{item.name}}</h5>
+        <p class="team-box_mail">{% trans 'Перейти к товарам' %}<span><a href="">{{item.email}}</a></span></p>
+        <p class="team-box_number">{% trans 'Перейти к товарам' %} <span><a href="tel:{{item.phone}}">{{item.phone}}</a></span></p>
+        <div class="for__b_icons"><a href="{{item.telegram}}"><i class="fab fa-telegram-plane"></i></a></i> <a href="{{item.instagram}}"><i class="fab fa-instagram"></i></a></div>
+        <a href="tel:{{item.phone}}" class="team-box_link">{% trans 'Перейти к товарам' %}</a>
+      </div>
+    </div>
+
+</div>
+{% endfor %}
+
+
+</div>
+</div>
+
+
+{% endblock %}

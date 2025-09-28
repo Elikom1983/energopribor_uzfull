@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+
+
+
+{% block content %}
+    <div class="page-wrapper">
+
+
+        <!--News Section-->
+        <section class="news-section news-page">
+            <div class="auto-container">
+
+                <div class="news-block__parent">
+                    {% if product_search %}
+                        <!--News Block-->
+                        {% for item in product_search %}
+                            <div class="news-block felix">
+                                <div class="inner-box for__t_b felix">
+                                    <div class="image-box">
+                                        <div class="for__pd d-flex">
+                                            {% if item.v_nalichi == True %}
+                                                <div class="for_pd_left">
+                                                    <p>В наличии</p>
+                                                </div>
+                                            {% else %}
+
+                                            {% endif %}
+                                            {% if item.cena_po_zaprosu == True %}
+                                                <div class="for_pd_right">
+                                                    <p>Под заказ</p>
+                                                </div>
+                                            {% else %}
+
+                                            {% endif %}
+                                        </div>
+                                        <figure class="image">
+                                            <a href="{{ item.get_url }}"><img src="{{ item.image.url }}" alt=""></a>
+                                        </figure>
+                                        <div class="post-date d-flex">
+                                <span class="add__in_cart">
+                                    <a href="{% url 'add_cart' item.id %}">
+                                        <i class="fas fa-cart-plus cart-add"></i>
+                                    </a>
+                                </span>
+                                        </div>
+                                    </div>
+                                    <div class="lower-box">
+                                        <h3><a href="{{ item.get_url }}">{{ item.product_name }}</a></h3>
+                                        {% if item.price %}
+                                            <div class="meta-info">
+                                                <p class="lower-box_price">Цена: {{ item.price }} сум</p>
+                                            </div>
+                                        {% else %}
+                                            <div class="meta-info">
+                                                <p class="lower-box_price">Цена: По запросу</p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div>
+                            <h2>{% trans 'No result found. Please try again.' %}</h2>
+                        </div>
+                    {% endif %}
+
+
+                </div>
+
+                <div class="pagination-box centered">
+                    <ul class="styled-pagination">
+                        {% if page.has_previous %}
+                            <li><a href="?page={{ page.previous_page_number }}" class="prev">Prev</a></li>
+                        {% endif %}
+                        {% for i in page.paginator.page_range %}
+                            {% if page.number == i %}
+                                <li><a class="active">{{ i }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page.has_next %}
+                            <li><a href="?page={{ page.next_page_number }}" class="next">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+{% endblock %}
