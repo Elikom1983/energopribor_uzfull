@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+    <main class="faq">
+        <div class="container">
+            <date>02.08.2025</date>
+            <h2 style="text-align: left;">{{news.title}}</h2>
+            <div class="bannernes" >
+                <img src="{{news.image.url}}" class="" alt="" style="width: 100%;">
+            </div>
+            <div class="text_content">              
+               {{news.content|safe}}
+            </div>
+
+            <section>
+                <h2 style="text-align: left;">Boshqa yangiliklar</h2>
+                <article class="article_news">
+                   {% for new in newsall %}            
+                    
+                      <div class="newsitem">
+                        <div class="imgnews">
+                            <img class="" alt="Do‘konimizga yangi turdagi mahsulotlar olib kelindi"
+                                src="{{new.image.url}}">
+                        </div>
+                        <div class="newstext">
+                            <h3>{{new.title}}</h3>
+                            <a href="{{new.get_absolute_url}}">Batafsil</a>
+
+                        </div>
+
+                    </div>
+                   {% endfor %}   
+
+                  
+                </article>
+
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+
+    

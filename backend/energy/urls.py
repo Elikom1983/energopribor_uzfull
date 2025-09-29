@@ -14,6 +14,8 @@ urlpatterns = i18n_patterns(
     path('cart/', include('carts.urls')),
     path('pages/', include('pages.urls')),
     path('news/', include('news.urls')),
+    path('about/', include('about.urls')),
+
 
     path(
         "robots.txt",

@@ -29,7 +29,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'about',
+    'news',
     'colorfield',
    'adminlte3',
     'adminlte3_theme',    

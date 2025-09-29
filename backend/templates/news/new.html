@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+    <main class="faq">
+        <div class="container">
+            <h2 class="avout_title">Yangiliklar</h2>
+            <section>
+                <article class="article_news">  
+                    {% for new in news_list %}            
+                    
+                      <div class="newsitem">
+                        <div class="imgnews">
+                            <img class="" alt="Do‘konimizga yangi turdagi mahsulotlar olib kelindi"
+                                src="{{new.image.url}}">
+                        </div>
+                        <div class="newstext">
+                            <h3>{{new.title}}</h3>
+                            <a href="{{new.get_absolute_url}}">Batafsil</a>
+
+                        </div>
+
+                    </div>
+                   {% endfor %}   
+
+
+
+
+                </article>
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

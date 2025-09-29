@@ -220,34 +220,36 @@
         </div>
     </div>
 <div class="slideMenu_menu_box" id="slideMenu_menuid">
-    <ul class="SlideMenu-menu">
-        {% for cat in menus %}
-            <li class="{% if cat.children.exists %}menu-item-has-children{% endif %}">
-                <a class="{% if cat.children.exists %}hasArrow{% endif %}" href="/magazin/folder/{{ cat.slug }}">
-                    <span>{{ cat.safe_translation_getter:"name" }}</span>
-                </a>
+   <ul class="SlideMenu-menu">
+    {% for cat in menus %}
+        <li class="{% if cat.children.exists %}menu-item-has-children{% endif %}">
+            <a class="{% if cat.children.exists %}hasArrow{% endif %}" href="/magazin/folder/{{ cat.slug }}">
+                <span>{{ cat.translated_name }}</span>
+            </a>
 
-                {% if cat.children.exists %}
-                    <ul class="sub_menu">
-                        <li><a href="/magazin/folder/{{ cat.slug }}">Назад</a></li>
-                        <li class="parentItem">
-                            <a href="/magazin/folder/{{ cat.slug }}">
-                                <span>{{ cat.safe_translation_getter:"name" }}</span>
+            {% if cat.children.exists %}
+                <ul class="sub_menu">
+                    lore
+                    <li><a href="/magazin/folder/{{ cat.slug }}">Назад</a></li>
+                    <li class="parentItem">
+                        <a href="/magazin/folder/{{ cat.slug }}">
+                            <span>{{ cat.translated_name }}</span>
+                        </a>
+                    </li>
+                    {% for child in cat.children.all %}
+                        <li class="{% if child.children.exists %}menu-item-has-children{% endif %}">
+                            <a href="/magazin/folder/{{ child.slug }}">
+                                <span>{{ child.translated_name }}</span>
                             </a>
+                            {# Agar child bolalari bo‘lsa rekursiya uchun yana sub_menu qo‘yish mumkin #}
                         </li>
-                        {% for child in cat.children.all %}
-                            <li class="{% if child.children.exists %}menu-item-has-children{% endif %}">
-                                <a href="/magazin/folder/{{ child.slug }}">
-                                    <span>{{ child.safe_translation_getter:"name" }}</span>
-                                </a>
-                                {# рекурсия: агар бола-чиқса яна sub_menu қўйиш мумкин #}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
 </div>
 
 
