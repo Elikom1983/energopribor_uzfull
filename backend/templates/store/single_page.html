@@ -1,0 +1,195 @@
+
+  {% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+
+    <link href="{% static 'css/single.css' %}" rel="stylesheet" >
+
+
+
+
+
+    <main>
+        <div class="container">
+          
+        </div>
+        <div class="container">
+            <div class="product_container">
+                <div class="product_container_top">
+                    <div class="product-gallery">
+                        <!-- Chap tarafdagi thumbs -->
+                        <div class="swiper gallery-thumbs" id="gallery-thumbs">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="{{ single_product.image.url}}"></div>
+                                {% for img in gallery %}
+                                    <div class="swiper-slide"><img src="{{ img.image.url }}"></div>
+                                {% endfor %}
+                               
+                            </div>
+                        </div>
+
+                        <!-- O‘ng tarafdagi katta rasm -->
+                        <div class="swiper gallery-top">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="{{ single_product.image.url}}"></div>
+                                {% for img in gallery %}
+                                    <div class="swiper-slide"><img src="{{img.image.url }}"></div>
+                                {% endfor %}
+                            </div>
+                            <div class="buttongroup">
+                                        <a href="#" class="favorite" data-id="{{ single_product.id }}" onclick="toggleFavorite(event, this)">
+                         
+                                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_284_2048)">
+                                                <path
+                                                    d="M26.0002 16.7627L16.0002 26.6667L6.00024 16.7627C5.34065 16.1208 4.8211 15.3494 4.4743 14.4969C4.12751 13.6443 3.96099 12.7293 3.98522 11.8093C4.00946 10.8892 4.22392 9.98419 4.61512 9.15112C5.00631 8.31806 5.56575 7.57501 6.25822 6.96878C6.95069 6.36255 7.76118 5.90626 8.63865 5.62865C9.51613 5.35104 10.4416 5.25812 11.3567 5.35574C12.2719 5.45337 13.1569 5.73942 13.9561 6.19588C14.7552 6.65235 15.4512 7.26934 16.0002 8.00801C16.5516 7.2747 17.2484 6.6631 18.047 6.21148C18.8457 5.75986 19.7289 5.47794 20.6415 5.38337C21.5541 5.28879 22.4763 5.3836 23.3506 5.66186C24.2249 5.94012 25.0323 6.39584 25.7223 7.00049C26.4123 7.60515 26.9701 8.34572 27.3608 9.17586C27.7515 10.006 27.9666 10.9079 27.9927 11.825C28.0187 12.7421 27.8553 13.6547 27.5124 14.5057C27.1696 15.3567 26.6548 16.1278 26.0002 16.7707"
+                                                    stroke="#A6A6A6" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_284_2048">
+                                                    <rect width="32" height="32" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                  </a>
+                                {% if single_product.download %}
+                                        <a href="{{ single_product.download.url }}" class="download" download>
+                                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_284_2120)">
+                                                    <path d="M10.6665 12H9.33317C8.62593 12 7.94765 12.281 7.44755 12.781C6.94746 13.2811 6.6665 13.9594 6.6665 14.6667V25.3333C6.6665 26.0406 6.94746 26.7189 7.44755 27.219C7.94765 27.719 8.62593 28 9.33317 28H22.6665C23.3737 28 24.052 27.719 24.5521 27.219C25.0522 26.7189 25.3332 26.0406 25.3332 25.3333V14.6667C25.3332 13.9594 25.0522 13.2811 24.5521 12.781C24.052 12.281 23.3737 12 22.6665 12H21.3332"
+                                                        stroke="#A6A6A6" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path d="M16 18.6667V4" stroke="#A6A6A6" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path d="M12 8L16 4L20 8" stroke="#A6A6A6" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_284_2120">
+                                                        <rect width="32" height="32" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </a>
+                                   {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_container_top_left">
+                        <div class="leftbox">
+                            <span class="viewbox">
+                                {% if single_product.top %}
+                                Eng ko‘p sotilgan
+                                {% endif %}
+                            </span>
+                            <h1>{{ single_product.product_name}}</h1>
+                            {% if single_product.v_nalichi %}
+                            <span class="stock in-stock">Sotuvda mavjud</span>
+                            {% else %}
+                              <span class="stock out-stock">Sotuvda mavjud emas</span>
+                             {% endif %}
+                            <div class="expertcontent">
+                                <h3>Mahsulot haqida</h3>
+                                <p>{{ single_product.short_description }}</p>
+                                <a class="">Mahsulot haqida to‘liq ma’lumot <svg width="10" height="6"
+                                        viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 1L5 5L1 1" stroke="#A6A6A6" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        {% if single_product.price %}
+                        <div class="rightbox">
+                           <div class="chegirma">
+                                    {% if single_product.discount > 0 %}
+                                        <del>{{ single_product.price|price_format }} so‘m</del>
+                                        <span>-{{ single_product.discount }}% chegirma</span>
+                                    {% endif %}
+                                </div>
+
+                                <p class="price">
+                                    {{ single_product.discounted_price|price_format }} so‘m
+                                </p>
+
+                                <a href="{% url 'add_to_cart' single_product.id %}" class="btn cart">
+                                    <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                </a>
+                            <div class="sendclass"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_284_2037)">
+                                        <path
+                                            d="M5 17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19C7.53043 19 8.03914 18.7893 8.41421 18.4142C8.78929 18.0391 9 17.5304 9 17C9 16.4696 8.78929 15.9609 8.41421 15.5858C8.03914 15.2107 7.53043 15 7 15C6.46957 15 5.96086 15.2107 5.58579 15.5858C5.21071 15.9609 5 16.4696 5 17Z"
+                                            stroke="#A6A6A6" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M15 17C15 17.5304 15.2107 18.0391 15.5858 18.4142C15.9609 18.7893 16.4696 19 17 19C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17C19 16.4696 18.7893 15.9609 18.4142 15.5858C18.0391 15.2107 17.5304 15 17 15C16.4696 15 15.9609 15.2107 15.5858 15.5858C15.2107 15.9609 15 16.4696 15 17Z"
+                                            stroke="#A6A6A6" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M5 17H3V13M2 5H13V17M9 17H15M19 17H21V11M21 11H13M21 11L18 6H13"
+                                            stroke="#A6A6A6" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M3 9H7" stroke="#A6A6A6" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_284_2037">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>O‘zbekiston bo‘ylab 3 kun ichida yetkazamiz</span>
+                            </div>
+                        </div>
+                      {% endif %}
+
+                    </div>
+                </div>
+                <div class="product_container_bottom">
+                    <div class="infoconten">
+                        <h3>Mahsulot haqida batafsil</h3>
+                       {{ single_product.description|safe }}                 
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div class=" before_foter">
+        <div class="container">
+            <h3 class="before_foter_title">O‘xshash mahsulotlar</h3>
+            <div class="sliderbox" id="sliderbox">
+                <div class="swiper-wrapper">
+                    {% for product in related_products %}
+                    <div class="swiper-slide">
+                        <div class="imgbox">
+                            <img src="{{product.image.url}}" alt="product">
+                            <i class="fa-regular fa-heart" id="idprdouxt1" data-prdoct="id2"></i>
+                        </div>
+                        <div class="infobox">
+                            <h3>{{ product.name }}</h3>
+                            <p>{{ product.price|price_format}} so'm</p>
+                             <a href="{% url 'add_to_cart' product.id %}" class="btn cart">
+                                 <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                              </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='{% static 'js/single.js' %}'></script>
+{% endblock %}
+   

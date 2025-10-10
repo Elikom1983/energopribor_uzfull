@@ -1,0 +1,29 @@
+{% load i18n static %}
+{% load mptt_tags %}
+{% load reverse_lang %}
+{% load current_lang %}
+{% load custom_filters %}
+
+{% for item in products %}
+<li class="product_card">
+    <div class="product_image">
+        <a href="{{ item.get_url }}"><img src="{{ item.image.url }}" alt=""></a>
+        <i class="fa-regular fa-heart" id="idprdouxt1" data-prdoct="id2"></i>
+    </div>
+    <div class="infobox">
+        <h3><a href="{{ item.get_url }}">{{ item.product_name }}</a></h3>
+        {% if item.price %}
+            <p>{{ item.price|price_format }}</p>
+            <a href="{% url 'add_cart' item.id %}" class="btn cart">
+                <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+            </a>
+        {% else %}
+            <a href="{{ item.get_url }}" class="btn cart">
+                <i class="fas fa-info-circle"></i> Batafsil
+            </a>
+        {% endif %}
+    </div>
+</li>
+{% empty %}
+<p>Hech narsa topilmadi.</p>
+{% endfor %}

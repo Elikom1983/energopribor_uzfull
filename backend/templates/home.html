@@ -2,11 +2,17 @@
 {% load i18n static %}
 {% load custom_filters %}
 
+  {% block title %}{{ homeseo.title }}{% endblock  %}
+        {% block description %}{{ homeseo.description|safe}}{% endblock  %}
+        {% block keywords %}{{ homeseo.keywords }}{% endblock  %}   
 {% block content %}
+
+      
+  
     <main>
         <section class="hero" >
             {% if banner %}
-            <div class="slider_swiper" >
+            <div class="slider_swiper slider22" >
                 <div class="swiper-wrapper" >
                     {% for item in banner  %}
                     <div class="swiper-slide"  style="background:{{item.backgrouncolor}}">
@@ -14,7 +20,7 @@
                             <div class="hero_box" >
                                 <div class="hero_left" >
                                     <h1>{{item.title}}</h1>
-                                    <a href="{{item.link}}" class="btn"  style="background:{{item.colorbutton}}">Bizda xarid qiling</a>
+                                    <a href="{{item.link}}" class="btn"  style="background:{{item.colorbutton}}">{% trans "Bizda xarid qiling" %}</a>
 
                                 </div>
                                 <div class="hero_right  " >
@@ -41,10 +47,12 @@
             <div class="container" >
                 <div class="boxproduct" >
                     <div class="titlbox" >
-                        <h2 class="titleclass" style="text-align:left" >Ko‘p qidirilayotgan mahsulotlar</h2>
+                        <h2 class="titleclass" style="text-align:left" >
+                            {% trans 'Ko‘p qidirilayotgan mahsulotlar' %}
+                            </h2>
                         <div class="arrowclass" >
-                            <div class="swiper-button-prev" id="swiper-button-prev" ></div>
-                            <div class="swiper-button-next" id="swiper-button-prev" ></div>
+                            <div class="swiper-button-prev swiper-button-previd" id="swiper-button-prev" ></div>
+                            <div class="swiper-button-next swiper-button-nextid" id="swiper-button-prev" ></div>
                         </div>
                     </div>
                     {% if  top %}
@@ -58,17 +66,18 @@
                                      <i class="fa-regular fa-heart favorite-icon"  data-product-id="{{ item.id }}"  onclick="toggleFavorite(this)">
 
                                      </i>
+                                     
                                 </div>
                                 <div class="infobox" >
                                     <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
                                     {% if item.price %}
                                     <p>{{ item.price|price_format }}</p>
                                    <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
-                                        <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                        <i class="fas fa-shopping-cart"></i> {% trans "Savatga qo‘shish" %}
                                      </a>
                                     {% else %}
                                    <a href="{{ item.get_url }}" class="btn cart">
-                                       <i class="fas fa-info-circle"></i> Batafsil</a>
+                                       <i class="fas fa-info-circle"></i>{% trans "Batafsil" %}</a>
 
                                     {% endif %}
                                 </div>
@@ -86,8 +95,9 @@
         <section class="categoties" >
             <div class="container" >
                 <div class="titlbox" >
-                    <h2 class="titleclass" >Ommabop mahsulotlar katalogi</h2>
-                    <a href="" class="allcategories" >Barchasini ko‘rish</a>
+                    <h2 class="titleclass" >{% trans 'Ommabop mahsulotlar katalogi' %}
+                    </h2>
+                    <a href="" class="allcategories" >{% trans 'Barchasini ko‘rish' %}</a>
 
                 </div>
                  {% if populars  %}
@@ -95,7 +105,7 @@
                     <ul class="categotiesbox" >
                         {% for popular  in populars %}
                         <li class="item{{ forloop.counter }}" >
-                            <a href="#" >
+                            <a href="{{ popular.get_absolute_url }}" >
                                 <img src="{{ popular.image.url }}" alt="category" >
                                 <p>{{ popular.name }}</p>
                             </a>
@@ -119,7 +129,7 @@
                     <div class="bannerright" >
                         <h3>{{bannerhome.title}}</h3>
                          <p>{{ bannerhome.text|safe }}</p>
-                        <a href="#" class="btn" >Bepul qo‘ng‘iroq</a>
+                        <a href="#" class="btn" > {% trans 'Bepul qo‘ng‘iroq' %}</a>
 
                     </div>
                 </div>
@@ -130,10 +140,10 @@
             <div class="container" >
                 <div class="boxproduct" >
                     <div class="titlbox" >
-                        <h2 class="titleclass" style="text-align:left" >Yangi mahsulotlar</h2>
+                        <h2 class="titleclass" style="text-align:left" >{% trans 'Yangi mahsulotlar' %}</h2>
                         <div class="arrowclass" >
-                            <div class="swiper-button-prev" id="swiper-button-prev2" ></div>
-                            <div class="swiper-button-next" id="swiper-button-next2" ></div>
+                            <div class="swiper-button-prev swiper-button-previd2" ></div>
+                            <div class="swiper-button-next swiper-button-nextid2" ></div>
                         </div>
                     </div>
                     <div class="sliderbox" id="sliderbox2" >
@@ -146,17 +156,18 @@
                                      <i class="fa-regular fa-heart favorite-icon"  data-product-id="{{ item.id }}"  onclick="toggleFavorite(this)">
 
                                      </i>
+                                     
                                 </div>
                                 <div class="infobox" >
                                     <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
                                     {% if item.price %}
                                     <p>{{ item.price|price_format }}</p>
                                    <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
-                                        <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                        <i class="fas fa-shopping-cart"></i>{% trans 'Savatga qo‘shish' %}
                                      </a>
                                     {% else %}
                                    <a href="{{ item.get_url }}" class="btn cart">
-                                       <i class="fas fa-info-circle"></i> Batafsil</a>
+                                       <i class="fas fa-info-circle"></i> {% trans 'Batafsil' %}</a>
 
                                     {% endif %}
                                 </div>
@@ -172,6 +183,10 @@
         {% endif %}
         {% if brands %}
             <section class="sections" >
+                <div class="container" >
+                 <h1>{% trans "Hamkorlarimiz" %}</h1>
+                </div>
+
                 <div class="logos row1" id="logosrow1" >
 
                     <div class="swiper-wrapper" >
@@ -203,8 +218,8 @@
                         </div>
                         <div class="formbox_right" >
                             <form action="" class="formclass" >
-                                <input type="text" placeholder="Telefon raqamingiz" >
-                                <button class="btn" >Bepul konsultatsiya</button>
+                                <input type="text" placeholder="{% trans "Telefon raqamingiz" %}" >
+                                <button class="btn" >{% trans "Bepul konsultatsiya" %}</button>
                             </form>
                         </div>
                     </div>

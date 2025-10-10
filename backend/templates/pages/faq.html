@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+{% block title %}{{ faq.seo_title }}{% endblock  %}
+        {% block description %}{{ faq.seo_description|safe}}{% endblock  %}
+        {% block keywords %}{{ faq.seo_keywords  }}{% endblock  %}
+
+{% block content %}
+
+<main class="faq">
+    <section>
+    <div class="container">
+
+    <h2>{{faq.title}}</h2>
+       
+                <div class="acardion_box">
+                    {% for item in faq_items %}
+                        <div class="acardion_item {% if forloop.first %}open{% endif %}">
+                            <div class="acardion_header">
+                                <b>{{ item.question }}</b>
+                                <span class="btn">
+                                    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17 1L9 9L1 0.999999" stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="acardion_content">
+                                {{ item.answer|safe }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+

@@ -426,6 +426,7 @@ img {
         color: var(--black);
         top: 0;
         right: 0;
+        cursor: pointer;
     }
 }
 .infobox {
@@ -1380,13 +1381,15 @@ video {
 }
 
 .slideMenu_menu_box{
-    position: absolute;
+    position: fixed;
     width: 400px;
     height: 100%;
     background: #fff;
-    right: -999999px;
+    right: 0;
     top: 0;
     z-index: 25;
+    transform: translateX(100%); /* o'ngga chiqaradi */
+    transition: transform 0.3s ease;
     .sub_menu{
         position: absolute;
         background: #fff;
@@ -1764,7 +1767,33 @@ ul {
     .galleriya .galleriya_item {
         grid-template-columns: 1fr;
     }
+    .formbox .formbox_left h3 {
+   
+    font-style: Bold;
+    font-size: 20px;
+   
+}
 }
 .infobox h3 a{
     color: #303030;
 }
+
+.breadcrumbs{
+    margin: 20px 0;
+}
+.stock.in-stock {
+    color: green;
+    font-weight: 600;
+}
+
+.stock.out-stock {
+    color: red;
+    font-weight: 600;
+}
+
+.header_top_right ul{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+

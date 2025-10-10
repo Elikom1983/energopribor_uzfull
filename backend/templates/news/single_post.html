@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 {% load custom_filters %}
+{% block title %}{{ news.seo_title }}{% endblock  %}
+        {% block description %}{{ news.seo_description|safe}}{% endblock  %}
+        {% block keywords %}{{ news.seo_keywords  }}{% endblock  %}
 
 {% block content %}
     <main class="faq">
         <div class="container">
-            <date>02.08.2025</date>
+            <date>{{ news.updated_at|date:"d.m.Y" }}</date>
             <h2 style="text-align: left;">{{news.title}}</h2>
             <div class="bannernes" >
                 <img src="{{news.image.url}}" class="" alt="" style="width: 100%;">

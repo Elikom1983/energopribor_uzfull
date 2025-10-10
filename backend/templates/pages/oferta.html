@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block title %}{{ oferta.seo_title }}{% endblock %}
+{% block description %}{{ oferta.seo_description|safe }}{% endblock %}
+{% block keywords %}{{ oferta.seo_keywords }}{% endblock %}
+
+{% block content %}
+<main class="faq">
+    <section>
+        <div class="container">
+            {% if oferta %}
+                <h2>{{ oferta.title }}</h2>
+                <div class="text_content">
+                    {{ oferta.description|safe }}
+                </div>
+            {% else %}
+                <p>{% trans "Ma'lumot topilmadi." %}</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

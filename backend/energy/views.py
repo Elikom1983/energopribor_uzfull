@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from store.models import Product,Wishlist
-from pages.models import Banner, Brand, Clients,Bannerhome,Bannerfoter
+from pages.models import Banner, Brand, Clients,Bannerhome,Bannerfoter,HomeSeo
 from category.models import Category
 
 
@@ -25,6 +25,7 @@ def home(request):
     populars = Category.objects.filter(is_popular=True)[:4]
     bannerhome = Bannerhome.objects.first()
     bannerfoter=Bannerfoter.objects.first()
+    homeseo = HomeSeo.objects.first()
 
 
     context = { 
@@ -36,7 +37,8 @@ def home(request):
         'new':new_products,       
         'brands':brands,
         'clients':clients,
-        'bannerfoter':bannerfoter
+        'bannerfoter':bannerfoter,
+        'homeseo':homeseo
     }
     return render(request, 'home.html', context)
 

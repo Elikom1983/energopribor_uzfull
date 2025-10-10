@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+<main class="faq">
+    <div class="container">
+    <h2 class="avout_title">{{vakansiya.title}}</h2>
+    
+             <section>
+        
+            <ul class="vacansiyabox">
+                {% for item in vakansiyaitem %}
+                <li><a href="">{{item.position}}</a></li>
+                {% endfor %}
+                
+            </ul>
+        </section>
+        <section>
+            <div class="text_content">
+                {{vakansiya.content|safe}}
+            </div>
+        </section>
+
+    </section>
+    </div>
+</main>
+{% endblock %}
+
+  

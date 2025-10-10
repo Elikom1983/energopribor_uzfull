@@ -22,8 +22,8 @@ const swiper2 = new Swiper("#sliderbox", {
   spaceBetween: 20,
   loop: true,
   navigation: {
-    nextEl: '#sliderbox-next',
-    prevEl: '#sliderbox-prev',
+    nextEl: '.swiper-button-nextid',
+    prevEl: '.swiper-button-previd',
   },
   autoplay: {
     delay: 3000,
@@ -41,8 +41,8 @@ var swiper3 = new Swiper("#sliderbox2", {
   spaceBetween: 20,
   loop: true,
   navigation: {
-    nextEl: '#sliderbox2-next',
-    prevEl: '#sliderbox2-prev',
+    nextEl: '.swiper-button-nextid2',
+    prevEl: '.swiper-button-previd2',
   },
   autoplay: {
     delay: 3000,
@@ -157,21 +157,44 @@ activebt.forEach(function(item) {
   });
 });
  
-  function menuController(activeid, removeid, showbutton) {
-    const line1id = document.getElementById(activeid);   // ochish tugmasi
-    const removeBtn = document.getElementById(removeid); // yopish tugmasi
-    const catmenuid = document.getElementById(showbutton); // menyu o'zi
+const thumbs = new Swiper(".gallery-thumbs", {
+  direction: "horizontal", // Desktop uchun
+  spaceBetween: 10,
+  slidesPerView: 2.5,
+  freeMode: true,
+  watchSlidesProgress: true,
+  watchSlidesVisibility: true,
+  loop: true,
 
-    // ochish
-    line1id.addEventListener('click', function () {
-        catmenuid.classList.add("activemenu");
-    });
+  breakpoints: {
+    // 950px dan kichik bo‘lsa (planshet va mobil)
+    950: {
+      direction: "vertical",
+      slidesPerView: 4,
+    },
+    768: {
+      direction: "horizontal",
+      slidesPerView: 4,
+    },
+    480: {
+      direction: "horizontal",
+      slidesPerView: 3,
+    },
+     380: {
+      direction: "horizontal",
+      slidesPerView: 3,
+    }
+  }
+});
 
-    // yopish
-    removeBtn.addEventListener('click', function () {
-        catmenuid.classList.remove("activemenu");
-    });
-}
+const main = new Swiper(".gallery-top", {
+  spaceBetween: 10,
+  loop: true,
+  thumbs: {
+    swiper: thumbs,
+  },
+});
+
 menuController('line1id','closedesktopid','catmenuid_desctop');
 let slideMenu = document.querySelectorAll('#slideMenu_menuid .menu-item-has-children > a');
 let backButtons = document.querySelectorAll('#slideMenu_menuid .sub_menu li:first-child a'); // faqat "Назад"
@@ -204,18 +227,6 @@ backButtons.forEach(function(back) {
 });
 
 
-const overlay = document.getElementById("overlay");
-const ytVideo = document.getElementById("ytVideo");
-
-if (overlay && ytVideo) {
-  overlay.addEventListener("click", () => {
-    overlay.style.display = "none"; // overlay yo‘qoladi
-    ytVideo.style.display = "block"; // iframe ko‘rinadi
-    ytVideo.src = "https://www.youtube.com/embed/DM3WFDZapzw?autoplay=1";
-  });
-} else {
-  console.warn("overlay yoki ytVideo topilmadi!");
-}
 
 
 // Price Range
@@ -250,7 +261,113 @@ maxRange.addEventListener("input", updateRange);
 }
 
 
+function toggleFavorite(el){
+    const productId = el.dataset.productId;
+
+    fetch(`/favorite/toggle/${productId}/`, {method: 'POST', headers:{
+        'X-CSRFToken': '{{ csrf_token }}'
+    }})
+    .then(response => response.json())
+    .then(data => {
+        if(data.favorited){
+            el.classList.remove('fa-regular');
+            el.classList.add('fa-solid', 'text-danger'); // qizil heart
+        } else {
+            el.classList.remove('fa-solid', 'text-danger');
+            el.classList.add('fa-regular');
+        }
+    });
+}
+
 
 
 // main.js
+
+ function menuController(activeid, removeid, showbutton) {
+    const line1id = document.getElementById(activeid);
+    const removeBtn = document.getElementById(removeid);
+    const catmenuid = document.getElementById(showbutton);
+
+    if (line1id && removeBtn && catmenuid) {
+        line1id.addEventListener('click', function () {
+            catmenuid.classList.add("activemenu");
+        });
+
+        removeBtn.addEventListener('click', function () {
+            catmenuid.classList.remove("activemenu");
+        });
+    } else {
+        console.warn("menuController elementlaridan biri topilmadi:", activeid, removeid, showbutton);
+    }
+}
+
+
+
+const overlays = document.querySelectorAll(".video-overlay");
+  const ytVideo = document.getElementById("ytVideo");
+
+  overlays.forEach(overlay => {
+    overlay.addEventListener("click", () => {
+      const videoId = overlay.dataset.video;
+      overlays.forEach(o => o.style.display = "none"); // Boshqa overlay’larni ham yashirish
+      ytVideo.style.display = "block";
+      ytVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+    });
+  });
+  
+
+ 
+function toggleFavorite(event, el) {
+    event.preventDefault();
+    let productId = el.getAttribute("data-id");
+
+    fetch(`/store/wishlist/toggle/${productId}/`, {
+        method: "GET",
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "added") {
+            // Yurakni qizil qilish
+            el.querySelector("path").setAttribute("stroke", "red");
+        } else if (data.status === "removed") {
+            // Yurakni kulrang qilish
+            el.querySelector("path").setAttribute("stroke", "#A6A6A6");
+        }
+
+        // Headerdagi counterni yangilash
+        let counter = document.querySelector(".wishlist span");
+        if (counter) {
+            counter.textContent = data.count;
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+function toggleFavorite(el) {
+    let productId = el.getAttribute("data-product-id");
+
+    fetch(`/store/wishlist/toggle/${productId}/`, {
+        method: "GET",
+        headers: {"X-Requested-With": "XMLHttpRequest"}
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Yurak rangini o'zgartirish
+        if(data.status === "added") {
+            el.classList.remove("fa-regular");
+            el.classList.add("fa-solid");
+        } else {
+            el.classList.remove("fa-solid");
+            el.classList.add("fa-regular");
+        }
+
+        // Header countni yangilash
+        let wishlistCountEl = document.getElementById("wishlist-count");
+        if(wishlistCountEl) {
+            wishlistCountEl.innerText = data.count;
+        }
+    })
+    .catch(err => console.log(err));
+}
 

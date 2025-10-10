@@ -2,87 +2,163 @@
 {% load i18n static %}
 {% load custom_filters %}
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/cart-shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 
 {% endblock %}
 {% block content %}
-<section class="news-section news-page">
-    <div class="card_for_Amir">
-            <ul>
-              <li><a href="">{% trans 'Продукты' %}</a></li>
-              <li><i class="fas fa-long-arrow-alt-right"></i></li>
-              <li><a href="" class="Amir_active">{% trans 'Корзинка' %}</a></li>
-              <li><i class="fas fa-long-arrow-alt-right"></i></li>
-              <li><a href="">{% trans 'Оформление' %}</a></li>
-            </ul>
-          </div>
-    <div class="auto-container row">
+    <div class="container">
+        <div class="cart-container">
+        <h2>Savatingiz</h2>
 
-        <div class="row clearfix col-md-9">
-            <!--News Block-->
-            {% for cart_item in cart_items %}
-            <div class="for__amir_cart col-lg-4 col-md-6 col-sm-12" style="height: max-content !important; position: relative !important;">
-                <div class="inner-box for_cart">
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="{{ cart_item.product.get_url }}"><img src="{{ cart_item.product.image.url }}"
-                                                                           alt=""></a></figure>
-                        <div class="post-date_new d-flex">
-                                    <span class="rem__in_cart">
-                                    <a href="{% url 'remove_cart_item' cart_item.product.id %}">
-                                      <i class="fas fa-minus add-cart"></i>
-                                    </a>
-                                    </span>
-                        </div>
+
+        {% if cart_items %}
+        <div class="carts-row">
+                    <div class="left">
+                    <a href="#">
+                        <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_143_1975)">
+                            <path d="M5 12H19" stroke="#1C70D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5 12L11 18" stroke="#1C70D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5 12L11 6" stroke="#1C70D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_143_1975">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        <span>Do‘konga qaytish</span></h3>
+                        </a>
                     </div>
-                    <div class="lower-box">
-                        <h3><a href="{{ cart_item.product.get_url }}">{{ cart_item.product.product_name }}</a></h3>
-                        <div class="meta-info"><p class="lower-box_price">{% trans 'Цена' %}: {{ cart_item.product.price }} {% trans 'сум' %}</p>
-                        </div>
+                    <ul class="cart-list">
+                    {% for item in cart_items %}
+                            <li class="cart-item" data-item-id="{{ item.id }}">
+                                <div class="item-image">
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.product_name }}">
+                                </div>
+                                <div class="info">
+                                    <h4>{{ item.product.product_name }}</h4>
+                                    <p>{{ item.product.price|price_format }} so‘m</p>
+                                    <div class="quantity">
+                                        <button class="decrease" onclick="updateQuantity({{ item.id }}, -1)">-</button>
+                                        <span class="qty">{{ item.quantity }}</span>
+                                        <button class="increase" onclick="updateQuantity({{ item.id }}, 1)">+</button>
+                                    </div>
+                                  
+                                </div>
+                                  <button class="remove" onclick="removeCartItem({{ item.id }})">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_284_1638)">
+                                        <path d="M4 7H20" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 11V17" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14 11V17" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g><defs><clipPath id="clip0_284_1638"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                                  </button>
+                            </li>
+                    {% endfor %}
+                    </ul>
 
+                    <div class="cart-summary">
+                    <p>Jami: <span id="cart-total">{{ cart_total|price_format }}</span> so‘m</p>
+                    <a href="{% url 'checkout' %}" class="btn checkout">Rasmiylashtirishga o‘tish</a>
                     </div>
-                </div>
-            </div>
-            {% endfor %}
+                    </div>
 
-
+        {% else %}
+        <div class="cart_empty">
+            <img src="{% static 'images/cartes.png' %}" alt="Savatingiz bo'sh">
+            <p>Savatingizda hozircha tovar mavjud emas.</p>
+               <a href="{% url 'home' %}" class="btn cart">
+                                     Xarid qilishga o‘tish
+                </a>
         </div>
-
-        <div class="cart-summary col-md-3">
-            <h3>{% trans 'Список' %}</h3>
-
-            <table class="table table-totals">
-                {% for cart_item in cart_items %}
-
-                <tbody>
-                <tr>
-                    <td><h5>{{cart_item.product.product_name}}</h5></td>
-                    <td><h5>{{cart_item.product.price}} {% trans 'сум' %}</h5></td>
-                </tr>
-
-
-                </tbody>
-                {% endfor %}
-
-            </table>
-
-            <div class="checkout-methods">
-                <a href="{% url 'checkout' %}" class="btn btn-block btn-dark">{% trans 'Перейти к оформлению' %}
-                    <i class="fa fa-arrow-right"></i></a>
-                <a href="/ru/store/" class="btn btn-primary btn-block">{% trans 'Продолжить покупки' %}</a>
-            </div>
+        {% endif %}
         </div>
-        <!-- <div class="pagination-box centered">
-            <ul class="styled-pagination">
-                <li><a href="#" class="prev">Prev</a></li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#" class="next">Next</a></li>
-            </ul>
-        </div> -->
-
     </div>
-</section>
+<script>
+    // Quantity yangilash funksiyasi
+    function updateQuantity(itemId, change) {
+        const qtySpan = document.querySelector(`.cart-item[data-item-id='${itemId}'] .qty`);
+        let quantity = parseInt(qtySpan.textContent);
+        quantity += change;
+
+        if (quantity < 1) {
+            quantity = 1; // minimal 1 ta
+        }
+
+        // AJAX orqali backend-ga yuborish
+        fetch("{% url 'update_cart' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({ item_id: itemId, quantity: quantity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                qtySpan.textContent = quantity;
+                document.getElementById('cart-total').textContent = data.cart_total_formatted;
+            }
+        });
+    }
+
+    // Cart item ni o'chirish
+    function removeCartItem(itemId) {
+        if (!confirm("Savatdan o'chirishni xohlaysizmi?")) return;
+
+        fetch("{% url 'remove_cart_item' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({ item_id: itemId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Li elementini DOM dan o'chirish
+                const li = document.querySelector(`.cart-item[data-item-id='${itemId}']`);
+                li.remove();
+
+                // Total narxni yangilash
+                document.getElementById('cart-total').textContent = data.cart_total_formatted;
+
+                // Agar savat bo'sh bo'lsa, bo'sh savat xabarini ko'rsatish
+                if (data.cart_empty) {
+                    document.querySelector('.cart-container').innerHTML = `
+                        <div class="cart_empty">
+                            <img src="{% static 'images/empty-cart.png' %}" alt="Savatingiz bo'sh">
+                            <p>Savatingizda hozircha tovar mavjud emas.</p>
+                        </div>`;
+                }
+            }
+        });
+    }
+</script>
+<style>
+    .cart_empty .btn{
+    background: linear-gradient(90deg, #1c70d0 0%, #3794ff 100%);
+    color: var(--white);
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    margin:20px auto;
+    }
+    @media screen and (max-width: 600px){
+        .cart_empty .btn{
+            width: 80%;
+        }
+
+    }
+</style>
 
 {% endblock %}

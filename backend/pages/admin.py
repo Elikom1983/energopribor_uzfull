@@ -21,18 +21,6 @@ class AboutMainAdmin(admin.ModelAdmin):
 
 admin.site.register(AboutMainImage, AboutMainAdmin)
 
-
-class HitAdmin(admin.ModelAdmin):
-    list_display = ('get_image',)
-
-    def get_image(self, obj):
-        return mark_safe(f'<img src={obj.image.url} width="auto" height="60"')
-
-
-
-admin.site.register(Hitofsales, HitAdmin)
-
-
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('get_image',)
 
@@ -51,14 +39,7 @@ class PartnersAdmin(admin.ModelAdmin):
 
 admin.site.register(Partners, PartnersAdmin)
 
-class TeamAdmin(TranslatableAdmin):
-    list_display = ('get_image', 'name')
 
-    def get_image(self, obj):
-        return mark_safe(f'<img src={obj.image.url} width="auto" height="60"')
-
-
-admin.site.register(Team, TeamAdmin)
 
 @admin.register(Clients)
 class ClientsAdmin(admin.ModelAdmin):
@@ -86,5 +67,13 @@ class Bannerfoteradmin(TranslatableAdmin):
 
     def has_add_permission(self, request):
         if Bannerfoter.objects.exists():
+            return False
+        return super().has_add_permission(request)
+@admin.register(HomeSeo)
+class HomeSeoAdmin(TranslatableAdmin):
+    list_display = ('title', 'description', 'keywords')  # = белгисини унутманг!
+
+    def has_add_permission(self, request):
+        if HomeSeo.objects.exists():
             return False
         return super().has_add_permission(request)

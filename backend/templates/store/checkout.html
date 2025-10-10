@@ -1,239 +1,174 @@
 {% extends 'base.html' %}
-{% load i18n static %}
-
+{% load static %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 {% endblock %}
 
 {% block content %}
-<style>.gm-control-active > img {
-    box-sizing: content-box;
-    display: none;
-    left: 50%;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%)
-}
+<div class="container">
+  <div class="checkout-container">
+    <h2>Rasmiylashtirish</h2>
 
-.gm-control-active > img:nth-child(1) {
-    display: block
-}
+    <!-- 🔹 enctype multipart - fayl yuklash uchun kerak -->
+    <form method="POST" action="{% url 'checkout' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="checkout-grid">
 
-.gm-control-active:hover > img:nth-child(1), .gm-control-active:active > img:nth-child(1), .gm-control-active:disabled > img:nth-child(1) {
-    display: none
-}
-
-.gm-control-active:hover > img:nth-child(2), .gm-control-active:active > img:nth-child(3), .gm-control-active:disabled > img:nth-child(4) {
-    display: block
-}
-</style>
-<link type="text/css" rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans_old:400,500,700|Google+Sans+Text:400">
-<link type="text/css" rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Google+Sans+Text:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93">
-<style>.gm-ui-hover-effect {
-    opacity: .6
-}
-
-.gm-ui-hover-effect:hover {
-    opacity: 1
-}
-</style>
-<style>.gm-style .gm-style-cc a, .gm-style .gm-style-cc button, .gm-style .gm-style-cc span, .gm-style .gm-style-mtc div {
-    font-size: 10px;
-    box-sizing: border-box
-}
-
-.gm-style .gm-style-cc a, .gm-style .gm-style-cc button, .gm-style .gm-style-cc span {
-    outline-offset: 3px
-}
-</style>
-<style>@media print {
-    .gm-style .gmnoprint, .gmnoprint {
-        display: none
-    }
-}
-
-@media screen {
-    .gm-style .gmnoscreen, .gmnoscreen {
-        display: none
-    }
-}</style>
-<style>.dismissButton {
-    background-color: #fff;
-    border: 1px solid #dadce0;
-    color: #1a73e8;
-    border-radius: 4px;
-    font-family: Roboto, sans-serif;
-    font-size: 14px;
-    height: 36px;
-    cursor: pointer;
-    padding: 0 24px
-}
-
-.dismissButton:hover {
-    background-color: rgba(66, 133, 244, 0.04);
-    border: 1px solid #d2e3fc
-}
-
-.dismissButton:focus {
-    background-color: rgba(66, 133, 244, 0.12);
-    border: 1px solid #d2e3fc;
-    outline: 0
-}
-
-.dismissButton:focus:not(:focus-visible) {
-    background-color: #fff;
-    border: 1px solid #dadce0;
-    outline: none
-}
-
-.dismissButton:focus-visible {
-    background-color: rgba(66, 133, 244, 0.12);
-    border: 1px solid #d2e3fc;
-    outline: 0
-}
-
-.dismissButton:hover:focus {
-    background-color: rgba(66, 133, 244, 0.16);
-    border: 1px solid #d2e2fd
-}
-
-.dismissButton:hover:focus:not(:focus-visible) {
-    background-color: rgba(66, 133, 244, 0.04);
-    border: 1px solid #d2e3fc
-}
-
-.dismissButton:hover:focus-visible {
-    background-color: rgba(66, 133, 244, 0.16);
-    border: 1px solid #d2e2fd
-}
-
-.dismissButton:active {
-    background-color: rgba(66, 133, 244, 0.16);
-    border: 1px solid #d2e2fd;
-    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15)
-}
-
-.dismissButton:disabled {
-    background-color: #fff;
-    border: 1px solid #f1f3f4;
-    color: #3c4043
-}
-</style>
-<style>.gm-style-moc {
-    background-color: rgba(0, 0, 0, 0.45);
-    pointer-events: none;
-    text-align: center;
-    transition: opacity ease-in-out
-}
-
-.gm-style-mot {
-    color: white;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 22px;
-    margin: 0;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%)
-}
-</style>
-<style>.gm-style img {
-    max-width: none;
-}
-
-.gm-style {
-    font: 400 11px Roboto, Arial, sans-serif;
-    text-decoration: none;
-}</style>
-
-<section class="contact-section contact-page">
-
-    <div class="auto-container">
-        <div class="block_for_Amir">
-            <ul>
-              <li><a href="">{% trans 'Продукты' %}</a></li>
-              <li><i class="fas fa-long-arrow-alt-right"></i></li>
-              <li><a href="">{% trans 'Корзинка' %}</a></li>
-              <li><i class="fas fa-long-arrow-alt-right"></i></li>
-              <li><a href="" class="Amir_active">{% trans 'Оформление' %}</a></li>
-            </ul>
+        <!-- Chap qism -->
+        <div class="checkout-left">
+          <div class="form-group">
+            <label>Ismingiz</label>
+            <input type="text" name="full_name" placeholder="Ismingizni kiriting" required>
           </div>
 
-        <div class="content-box clearfix wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="2000ms"
-             style="visibility: visible; animation-duration: 2000ms; animation-delay: 0ms; animation-name: fadeInUp;">
-            <div class="form-box clearfix">
-                <div class="sec-title light-title">
-                    <h2 style="color: #fff;">{% trans 'Оформление Заказа' %}<br></h2>
-                    <div class="bottom-dots clearfix">
-                        <span class="dot line-dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
-                <div class="default-form contact-form">
-                    <form method="POST" action="{% url 'checkout' %}" id="contact-form" novalidate="novalidate">
-                        {% csrf_token %}
+          <div class="form-group">
+            <label>Telefon raqamingiz</label>
+            <input type="text" name="phone" placeholder="+998 XX XXX XX XX" required>
+          </div>
 
-                        <div class="row clearfix">
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="first_name" placeholder="{% trans 'Имя' %}" required="">
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="last_name" placeholder="{% trans 'Фамилия' %}" required="">
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="address_line" placeholder="{% trans 'Адрес' %}" required="">
-                            </div>
+          <div class="form-group">
+            <label>Manzilingiz</label>
+            <input type="text" name="address" placeholder="Viloyat, tuman, ko‘cha" required>
+          </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="email" name="email" placeholder="{% trans 'Почта' %}" required="">
-                            </div>
+          <div class="form-group">
+            <label>Yetkazib berish turi</label>
+            <select name="delivery_type">
+              <option value="kuryer">Kuryer orqali</option>
+              <option value="olib ketish">O‘zim olib ketaman</option>
+            </select>
+          </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                <input type="tel" name="phone" placeholder="{% trans 'Номер телефона' %}" required="">
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 form-group">
-                                <textarea name="message" placeholder="{% trans 'Комментарий (Не обезательно)' %}"></textarea>
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 form-group">
-                                <button type="submit" class="theme-btn btn-style-eight">
-                                    <div class="btn-title"><span class="btn-txt">{% trans 'Отправить' %}</span><span class="btn-icon"><span
-                                            class="icon flaticon-arrows-11"></span> </span></div>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="image-layer" style="background-image: url(images/background/bg-image-9.jpg);">
-                <div class="info-box">
-                    <div class="subtitle">{% trans 'Позвоните нам 24/7 для поддержки' %}</div>
-                    <div class="phone">
-                            <span class="icon">
-                                <img src="images/icons/icon-call-1.png" alt="">
-                            </span>
-                        <a href="tel:{% trans 'nomer' %}">{% trans 'nomer' %}</a>
-                    </div>
-
-                </div>
-            </div>
+          <div class="form-group">
+            <label>Qo‘shimcha izoh (ixtiyoriy)</label>
+            <textarea name="comment" rows="3" placeholder="Izoh..."></textarea>
+          </div>
         </div>
-    </div>
-</section>
 
+        <!-- O‘ng qism -->
+        <div class="checkout-right">
+          <div class="summary-box">
+            <h4>Buyurtma ma’lumotlari</h4>
+            <ul>
+              {% for item in cart_items %}
+              <li>
+                <span>{{ item.product.product_name }} × {{ item.quantity }}</span>
+                <span>{{ item.total_price|floatformat:0 }} so‘m</span>
+              </li>
+              {% endfor %}
+            </ul>
+            <hr>
+            <p class="total">Jami: <span>{{ cart_total|floatformat:0 }} so‘m</span></p>
+          </div>
 
+          <!-- To‘lov usuli -->
+          <div class="payment-method">
+            <h4>To‘lov usuli</h4>
+            <label>
+              <input type="radio" name="payment_method" value="naqd" checked> Naqd to‘lov
+            </label><br>
+            <label>
+              <input type="radio" name="payment_method" value="online"> Online (Payme/Click)
+            </label><br>
+            <label>
+              <input type="radio" name="payment_method" value="transfer"> Pul o‘tkazish (bank orqali)
+            </label>
+          </div>
+
+          <!-- 🔹 Faqat transfer bo‘lsa ko‘rinadigan maydonlar -->
+          <div id="transfer-fields" style="display:none; margin-top:20px;">
+            <div class="form-group">
+              <label>Pul o‘tkazilgan summa (so‘mda)</label>
+              <input type="number" step="0.01" name="transfer_amount" placeholder="Masalan: 250000.00">
+            </div>
+            <div class="form-group">
+              <label>O‘tkazma cheki (rasm yuklang)</label>
+              <input type="file" name="transfer_receipt" accept="image/*">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Buyurtmani yuborish</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 🔹 Script: faqat transfer tanlanganda inputlar chiqadi -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const radios = document.querySelectorAll('input[name="payment_method"]');
+  const transferFields = document.getElementById('transfer-fields');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.value === 'transfer') {
+        transferFields.style.display = 'block';
+      } else {
+        transferFields.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.checkout-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin: 30px 0;
+}
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+}
+.summary-box {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+.summary-box h4 { margin-bottom: 10px; }
+.summary-box ul { list-style: none; padding: 0; margin: 0; }
+.summary-box li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.summary-box .total {
+  font-weight: 700;
+  font-size: 18px;
+}
+.payment-method { margin-top: 20px; }
+.payment-method h4 { margin-bottom: 10px; }
+.btn-primary {
+  background: #1C70D0;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-primary:hover { background: #145aad; }
+</style>
 {% endblock %}
-
-
-
-
-
-
-

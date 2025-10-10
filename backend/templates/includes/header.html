@@ -22,18 +22,21 @@
                     <div class="header_top_center" >
                         <nav class="tomenu" >
                             <ul>
-                                <li><a href="{% url 'news' %}" >Yangiliklar</a></li>
-                                <li><a href="#" >Biz haqimizda</a></li>
-                                <li><a href="#" >Bog‘lanish</a></li>
-                                <li><a href="#" >Ko‘p beriladigan savollar</a></li>
+                                <li><a href="{% url 'news' %}" >{% trans "Yangiliklar" %}</a></li>
+                                <li><a href="{% url 'about' %}" >{% trans "Biz haqimizda" %}</a></li>
+                                <li><a href="{% url 'contact' %}" >{% trans "Bog‘lanish" %}</a></li>
+                                <li><a href="{% url 'faq' %}" >{% trans "Ko‘p beriladigan savollar" %}</a></li>
+                               
+                             
 
                             </ul>
                         </nav>
                     </div>
                     <div class="header_top_right" >
-                        <a href="#" >Rus</a>
-                        <a href="#" >Uz</a>
-                        <a href="#" >Eng</a>
+                        <ul>
+                            <li><a href="{% reverse_lang request 'uz' %}" class="top-text_link">UZ</a></li>                          
+                            <li><a href="{% reverse_lang request 'ru' %}" class="top-text_link">RU</a></li>
+                        </ul>
 
 
                     </div>
@@ -66,7 +69,7 @@
                         </div>
                     </div>
                     <form action="#" class="search" >
-                        <input type="text" placeholder="Mahsulot qidirish..." >
+                        <input type="text" placeholder="{% trans "Mahsulot qidirish..." %}" >
                         <button type="submit" >
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg' %}" >
@@ -87,8 +90,14 @@
                     </div>
                 </div>
                 <div class="header_center_right" >
-                    <a href="/whishlist" class="whilst" ><img src="{% static '/img/hearr.svg' %}" alt="" >Saralanganlar</a>
-                    <a href="{% url 'cart' %}" class="cart" ><img src="{% static '/img/cart.png' %}" alt="" >Savatda
+                 <a href="{% url 'wishlist' %}" class="wishlist">
+                   <img src="{% static 'img/hearr.svg' %}" alt="">
+                     {% trans "Saralanganlar" %}
+                        <span data-attr="{{ wishlist_count }}">{{ wishlist_count }}</span>
+                     
+
+                 </a>
+                    <a href="{% url 'cart' %}" class="cart" ><img src="{% static '/img/cart.png' %}" alt="" >{% trans "Savatda" %}
                          <div class="search__second_desc">
                                     <p data-attr="{{ cart_count }}"></p>
                                 </div>
@@ -101,7 +110,7 @@
                         <span></span>
                     </div>
                     <div class="burger_text" >
-                        Katalog
+                       {% trans "Katalog" %}
                     </div>
                 </div>
             </div>
@@ -116,7 +125,7 @@
                                         </li>
                                     {% endfor %}
                                 {% else %}
-                                    <li>Категориялар топилмади</li>
+                                    <li>{% trans "Категориялар топилмади" %}</li>
                                 {% endif %}
                          </ul>
 
@@ -131,3 +140,15 @@
 
 
     </header>
+ {% if request.path|length > 4 %} 
+<div class="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a href="/">{% trans "Bosh sahifa" %}</a></li>
+            {% for crumb in breadcrumbs %}
+                / <li><a href="{{ crumb.url }}">{{ crumb.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}

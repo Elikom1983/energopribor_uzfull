@@ -22,6 +22,25 @@ class Banner(TranslatableModel):
     class Meta:
         verbose_name = 'Slider'
         verbose_name_plural = 'Sliderlar'
+class HomeSeo(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=200, verbose_name=_('Title')),
+        description=models.TextField(blank=True, verbose_name=_('Description')),
+        keywords=models.TextField(max_length=300, blank=True, verbose_name=_('Keywords')),
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.pk and HomeSeo.objects.exists():
+            # Agar объект аллақачон бор бўлса, янги объект қўшилмайди
+            raise Exception('Фақат битта HomeSeo объекти бўлиши мумкин!')
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.safe_translation_getter("title", any_language=True) or "HomeSeo")
+
+    class Meta:
+        verbose_name = 'Home Seo'
+        verbose_name_plural = 'Home Seo'
 
 
 class Brand(models.Model):

@@ -15,7 +15,11 @@ urlpatterns = i18n_patterns(
     path('pages/', include('pages.urls')),
     path('news/', include('news.urls')),
     path('about/', include('about.urls')),
-
+    path('contacts/', include('conatact.urls')),
+    path('faq/', include('faq.urls')),
+    path('vacansiya/', include('vacansiya.urls')),
+    path('oferta/', include('oferta.urls')),
+      
 
     path(
         "robots.txt",

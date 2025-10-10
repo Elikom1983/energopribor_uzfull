@@ -18,11 +18,15 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
-    quantity = models.IntegerField()
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)  # null=False bo‘lishi yaxshiroq
+    quantity = models.PositiveIntegerField(default=1)  # default 1 qo‘shish
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.product} ({self.quantity})"
+
 
     def sub_total(self):
         return self.product.price * self.quantity

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/cart-shop.css' %}">
+
+{% endblock %}
+{% block content %}
+<section class="news-section news-page">
+    <div class="card_for_Amir">
+            <ul>
+              <li><a href="">{% trans 'Продукты' %}</a></li>
+              <li><i class="fas fa-long-arrow-alt-right"></i></li>
+              <li><a href="" class="Amir_active">{% trans 'Корзинка' %}</a></li>
+              <li><i class="fas fa-long-arrow-alt-right"></i></li>
+              <li><a href="">{% trans 'Оформление' %}</a></li>
+            </ul>
+          </div>
+    <div class="auto-container row">
+
+        <div class="row clearfix col-md-9">
+            <!--News Block-->
+            {% for cart_item in cart_items %}
+            <div class="for__amir_cart col-lg-4 col-md-6 col-sm-12" style="height: max-content !important; position: relative !important;">
+                <div class="inner-box for_cart">
+                    <div class="image-box">
+                        <figure class="image">
+                            <a href="{{ cart_item.product.get_url }}"><img src="{{ cart_item.product.image.url }}"
+                                                                           alt=""></a></figure>
+                        <div class="post-date_new d-flex">
+                                    <span class="rem__in_cart">
+                                    <a href="{% url 'remove_cart_item' cart_item.product.id %}">
+                                      <i class="fas fa-minus add-cart"></i>
+                                    </a>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="lower-box">
+                        <h3><a href="{{ cart_item.product.get_url }}">{{ cart_item.product.product_name }}</a></h3>
+                        <div class="meta-info"><p class="lower-box_price">{% trans 'Цена' %}: {{ cart_item.product.price }} {% trans 'сум' %}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="cart-summary col-md-3">
+            <h3>{% trans 'Список' %}</h3>
+
+            <table class="table table-totals">
+                {% for cart_item in cart_items %}
+
+                <tbody>
+                <tr>
+                    <td><h5>{{cart_item.product.product_name}}</h5></td>
+                    <td><h5>{{cart_item.product.price}} {% trans 'сум' %}</h5></td>
+                </tr>
+
+
+                </tbody>
+                {% endfor %}
+
+            </table>
+
+            <div class="checkout-methods">
+                <a href="{% url 'checkout' %}" class="btn btn-block btn-dark">{% trans 'Перейти к оформлению' %}
+                    <i class="fa fa-arrow-right"></i></a>
+                <a href="/ru/store/" class="btn btn-primary btn-block">{% trans 'Продолжить покупки' %}</a>
+            </div>
+        </div>
+        <!-- <div class="pagination-box centered">
+            <ul class="styled-pagination">
+                <li><a href="#" class="prev">Prev</a></li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="next">Next</a></li>
+            </ul>
+        </div> -->
+
+    </div>
+</section>
+
+{% endblock %}

@@ -29,6 +29,10 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'store',
+    'vacansiya',
+    'faq',
+    'conatact',
     'about',
     'news',
     'colorfield',
@@ -42,14 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',    
     'category',
     'mptt',
-    'parler',
-    'store',
+    'parler',    
     'rosetta',
     'carts',
     'pages',
     'ckeditor',
     'ckeditor_uploader',
    'site_settings',
+   'oferta',
+   'dal',
+   'dal_select2',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +90,10 @@ TEMPLATES = [
                 'site_settings.context_processors.socials',
                 'site_settings.context_processors.paymentmethod', 
                 'site_settings.context_processors.footercategory',
-                'site_settings.context_processors.menuall',   
+                'site_settings.context_processors.menuall',
+                'site_settings.context_processors.breadcrumbs',
+                'site_settings.context_processors.wishlist_count',  
+                  
                  
                 
 
@@ -202,7 +211,8 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'ru'
 
 PARLER_ENABLE_CACHING = False
 
-CSRF_TRUSTED_ORIGINS = ['https://energopribor.uz']
+CSRF_TRUSTED_ORIGINS = ['https://energopribor.uz',
+                         "https://ferromagnetic-unappealably-amani.ngrok-free.dev", ]
 
 # Rosetta
 ROSETTA_STORAGE_CLASS = 'rosetta.storage.CacheRosettaStorage'

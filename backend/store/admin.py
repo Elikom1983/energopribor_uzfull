@@ -1,51 +1,99 @@
 from django.contrib import admin
-from parler.admin import TranslatableAdmin
 from django.utils.safestring import mark_safe
-from store.models import Product, Order, OrderItem, MetaWords
+from parler.admin import TranslatableAdmin
+from .models import (
+    Product, ProductImage,
+    Attribute, AttributeValue,
+    Wishlist, Order, OrderItem, MetaWords
+)
 
 
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 1
+    fields = ('image',)
+    verbose_name = "Qo‘shimcha rasm"
+    verbose_name_plural = "Galereya rasmlari"
+
+    
+    def preview_image(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="60" height="60" style="border-radius:5px;object-fit:cover;" />')
+        return "-"
+    preview_image.short_description = "Oldindan ko'rish"
+
+@admin.register(Product)
 class ProductAdmin(TranslatableAdmin):
-    list_display = ('get_image', 'product_name', 'title', 'meta','price', 'category', 'modified_date', 'is_available')
+    list_display = ('get_image', 'get_name', 'price', 'discount', 'is_available', 'created_date')
     search_fields = ('translations__product_name',)
+    list_filter = ('price', 'discount', 'is_available')
+    list_per_page = 15
+    inlines = [ProductImageInline]
+    filter_vertical = ('atribut_values',)
+
     fieldsets = (
         (None, {
-            'fields': ('product_name', 'title','slug', 'meta','category', 'image', 'price', 'short_description','description', 'top', 'new', 'cena_po_zaprosu','v_nalichi', 'is_available'),
+            'fields': ('product_name', 'slug', 'price', 'discount', 'image',
+                       'short_description', 'description', 'atribut_values', 'is_available')
         }),
     )
-    list_per_page = 15
+
+    def get_name(self, obj):
+        return obj.safe_translation_getter("product_name", any_language=True)
+    get_name.short_description = "Mahsulot nomi"
 
     def get_image(self, obj):
-        return mark_safe(f'<img src={obj.image.url} width="auto" height="60"')
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="60" height="60" style="border-radius:5px;object-fit:cover;" />')
+        return "-"
+    get_image.short_description = "Rasm"
+    
+@admin.register(Attribute)
+class AttributeAdmin(TranslatableAdmin):
+    list_display = ('get_name', 'slug')
+    search_fields = ('translations__name',)
 
-    def get_prepopulated_fields(self, request, obj=None):
-        return {
-            'slug': ('product_name',)
-        }
+    def get_name(self, obj):
+        return obj.safe_translation_getter("name", any_language=True)
+    get_name.short_description = "Attribute nomi"
 
-admin.site.register(Product, ProductAdmin)
+@admin.register(AttributeValue)
+class AttributeValueAdmin(TranslatableAdmin):
+    list_display = ('get_value', 'get_attribute')
+    search_fields = ('translations__value',)
 
+    def get_value(self, obj):
+        return obj.safe_translation_getter("value", any_language=True)
+    def get_attribute(self, obj):
+        return obj.attribute.safe_translation_getter("name", any_language=True)
 
+    get_value.short_description = "Qiymat"
+    get_attribute.short_description = "Attribute"
+
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    readonly_fields = ['first_name', 'last_name', 'phone', 'email', 'message', 'address_line', 'ordered_items'] 
-    list_display = ['fullname', 'phone', 'email', 'resolved',]
-    list_filter = ['resolved',]
-    search_fields = ['first_name', 'last_name', 'phone', 'email']
-    list_per_page = 20
+    list_display = ('id', 'first_name', 'last_name', 'phone', 'total_price', 'resolved', 'date_added')
+    list_filter = ('resolved', 'delivery_type', 'payment_method', 'date_added')
+    search_fields = ('first_name', 'last_name', 'phone', 'email')
+    readonly_fields = ('date_added', 'ordered_items')
+    fieldsets = (
+        ("Buyurtma ma'lumotlari", {
+            'fields': ('first_name', 'last_name', 'phone', 'email', 'address_line')
+        }),
+        ("Yetkazib berish va to'lov", {
+            'fields': ('delivery_type', 'payment_method', 'total_price', 'transfer_amount', 'transfer_receipt')
+        }),
+        ("Qo'shimcha", {
+            'fields': ('message', 'comment', 'resolved', 'ordered_items', 'date_added')
+        }),
+    )
 
-    def fullname(self, obj=None):
-        return "{} {}".format(obj.first_name, obj.last_name)
-    
-    def has_add_permission(self, request, obj=None):
-        return False
-    
-    def has_delete_permission(self, request, obj=None):
-        return False
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('id', 'product', 'order', 'quantity')
+    list_filter = ('order',)
 
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Wishlist)
 admin.site.register(MetaWords)
-# class OrderItemAdmin(admin.ModelAdmin):
-#     readonly_fields = ['product', 'order', 'quantity']
-#     list_display = ['id', 'product', 'order', 'quantity']
-#     list_per_page = 20
-
-# admin.site.register(OrderItem, OrderItemAdmin)
+# ProductImage inline orqali ko'rsatiladi

@@ -2,107 +2,253 @@
 {% load i18n static %}
 {% load custom_filters %}
 
-{% block link %}
-<link rel="stylesheet" href="{% static 'css/test.css' %}">
-
-{% endblock %}
-{% block meta_content %}
-    {% for i in met %}
-        <meta name="keyword" content="{{ i.keyword }}">
-        <meta name="description" content="{{ i.description }}">
-    {% endfor %}
-{% endblock %}
-
-        
 {% block content %}
+<link href="{% static 'css/taxnomy.css' %}" rel="stylesheet" >
 
-<div class="page-wrapper">
 
+   <section class="katalog">
+        <div class="container">
+          
+            <div class="row">
+                <div class="sidebar">
+                    <aside class="">
+                        <div class="filter">
+                            <div class="filterHeader">
+                                <h3><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_194_2393)">
+                                            <path d="M4 6H20" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M6 12H18" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M9 18H15" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_194_2393">
+                                                <rect width="24" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
 
-    <!--News Section-->
-    <section class="news-section news-page">
-        <div class="auto-container">
-
-            <div class="news-block__parent">
-                {% if products %}
-                <!--News Block-->
-                {% for item in page.object_list %}
-                <div class="news-block felix">
-                    <div class="inner-box for__t_b felix">
-                        <div class="image-box">
-                            <div class="for__pd d-flex">
-                                {% if item.v_nalichi == True %}
-                                <div class="for_pd_left">
-                                    <p>В наличии</p>
-                                </div>
-                                {% else %}
-
-                                {% endif %}
-                                {% if item.cena_po_zaprosu == True %}
-                                <div class="for_pd_right">
-                                    <p>Под заказ</p>
-                                </div>
-                                {% else %}
-
-                                {% endif %}
+                                    Filter</h3>
+                                <span class="clear">Tozalash</span>
                             </div>
-                            <figure class="image">
-                                <a href="{{item.get_url}}"><img src="{{item.image.url}}" alt=""></a>
-                            </figure>
-                            <div class="post-date d-flex">
-                                <span class="add__in_cart">
-                                    <a href="{% url 'add_cart' item.id %}">
-                                        <i class="fas fa-cart-plus cart-add"></i>
-                                    </a>
-                                </span>
-                            </div>
+                            <aside class="">
+                                <div class="filters">
+                                    <div class="accardion-contener">
+                                        <div class="acardion-header">
+                                            <h4>Narx</h4>
+                                            <span class="toggle-icon">
+                                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 1L7 7L1 0.999999" stroke="#A6A6A6" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="acardion-content">
+                                            <div class="slider-container">
+                                               <input type="range" id="minRange" min="{{ price_range.min_price|default:0 }}" max="{{ price_range.max_price|default:10000000 }}" value="{{ price_range.min_price|default:0 }}" step="1000">
+                                                    <input type="range" id="maxRange" min="{{ price_range.min_price|default:0 }}"max="{{ price_range.max_price|default:10000000 }}" value="{{ price_range.max_price|default:10000000 }}" step="1000">
+                                                <div class="range-track"></div>
+                                            </div>
+                                            <div class="price-values">
+                                                <span id="minPrice">{{ price_range.min_price|floatformat:0 }} so‘m</span> —
+                                                <span id="maxPrice">{{ price_range.max_price|floatformat:0 }} so‘m</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {% for attr in attributes %}
+                                    <div class="accardion-contener">
+                                        
+                                        <div class="acardion-header">
+                                            <h4>{{ attr.name }}</h4>
+                                            <span class="toggle-icon">
+                                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 1L7 7L1 0.999999" stroke="#A6A6A6" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="acardion-content">
+                                              {% for val in attr.values.all %}
+                                            <div class="checkbox">                                                
+                                                <input type="checkbox"  class="filter-checkbox" data-attr="{{ attr.slug }}" value="{{ val.id }}" id="val{{ val.id }}">
+                                                 <label for="val{{ val.id }}">{{ val.value }}</label>
+                                            </div>
+                                         {% endfor %}
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+
+                            </aside>
                         </div>
-                        <div class="lower-box">
-                            <h3><a href="{{item.get_url}}">{{item.product_name}}</a></h3>
-                            {% if item.price %}
-                            <div class="meta-info">
-                                <p class="lower-box_price">Цена: {{item.price}} сум</p>
+
+
+
+                </div>
+                <div class="products">
+                    <div class="product_header">
+                       <h3>  {% if category %}{{ category.name }}{% else %} Barcha mahsulotlar{% endif %}
+  <span>({{ product_count }} tadan {{ page.object_list|length }} ta ko‘rsatilmoqda)</span></h3>
+
+                        <div class="sortby">
+                            <span>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_412_2829)">
+                                        <path d="M4 6H13" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M4 12H11" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M4 18H11" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M15 15L18 18L21 15" stroke="#303030" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M18 6V18" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_412_2829">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                Saralash:</span>
+                            <select name="sort" id="sort">
+                                <option value="default">Standart</option>
+                                <option value="price-asc">Narx: Eng pastdan eng yuqoriga</option>
+                                <option value="price-desc">Narx: Eng yuqoridan eng pastga</option>
+                                <option value="name-asc">Nomi: A dan Z gacha</option>
+                                <option value="name-desc">Nomi: Z dan A gacha</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="mobilfilter ">
+                        <div class="filtericon buttonfiletr">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_194_2393)">
+                                    <path d="M4 6H20" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M6 12H18" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M9 18H15" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_194_2393">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            Filter
+                        </div>
+                        <div class="sortby buttonfiletr">
+                            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_412_2829)">
+                                        <path d="M4 6H13" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M4 12H11" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M4 18H11" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M15 15L18 18L21 15" stroke="#303030" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M18 6V18" stroke="#303030" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_412_2829">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                Saralash:</span>
+                            <select name="sort" id="sort">
+                                <option value="default">Standart</option>
+                                <option value="price-asc">Narx: Eng pastdan eng yuqoriga</option>
+                                <option value="price-desc">Narx: Eng yuqoridan eng pastga</option>
+                                <option value="name-asc">Nomi: A dan Z gacha</option>
+                                <option value="name-desc">Nomi: Z dan A gacha</option>
+                            </select>
+                        </div>
+                        <div class="numberfilter buttonfiletr">
+                            <select name="numbers" id="numbers">
+                                <option value="default">20</option>
+                                <option value="price-asc">30</option>
+                                <option value="price-desc">40</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+                  {% if products %}
+                    <div class="product_container">
+                        <div class="product_wrapper">
+                            <ul class="product_list" id="product-list">
+                                    {% for item in page.object_list %}
+                                <li class="product_card">
+                                    <div class="product_image">
+                                        <a href="{{item.get_url}}"><img src="{{item.image.url}}" alt=""></a>
+                                        <i class="fa-regular fa-heart" id="idprdouxt1" data-prdoct="id2"></i>
+                                    </div>
+                                    <div class="infobox">
+                                        <h3><a href="{{item.get_url}}">{{item.product_name}}</a></h3>
+                                      
+                                        {% if item.price %}
+                                    <p>{{ item.price|price_format }}</p>
+                                   <a href="{% url 'add_cart' item.id %}" class="btn cart">
+                                        <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                                     </a>
+                                    {% else %}
+                                   <a href="{{ item.get_url }}" class="btn cart">
+                                       <i class="fas fa-info-circle"></i> Batafsil</a>
+
+                                    {% endif %}
+                                    </div>
+                                </li>
+                                 {% endfor %}
+
+
+                            </ul>
+                            <div class="pagination">
+                                <ul class="listpagination">
+                                      {% if page.has_previous %}
+                                          <li><a href="?page={{ page.previous_page_number }}" class="prev">Prev</a></li>
+                                      {% endif %}
+                                             {% for i in page.paginator.page_range  %}
+                                            {% if page.number == i %}
+                                                <li><a class="active">{{i}}</a></li>
+                                            {% else %}
+                                            <li><a href="?page={{ i }}">{{i}}</a></li>
+                                            {% endif %}
+                                     {% endfor %}
+                                    {% if page.has_next %}
+                                         <li><a href="?page={{ page.next_page_number }}" class="next">Next</a></li>
+                                     {% endif %}
+                                </ul>
                             </div>
-                            {% else %}
-                            <div class="meta-info">
-                                <p class="lower-box_price">Цена: По запросу</p>
-                            </div>
-                            {% endif %}
+
                         </div>
                     </div>
+                 {% endif %}
+
+
                 </div>
-                {% endfor %}
-                {% else %}
-                <div>
-                    <h2>{% trans 'No result found. Please try again.' %}</h2>
-                </div>
-                {% endif %}
 
-
-            </div>
-
-            <div class="pagination-box centered">
-                <ul class="styled-pagination">
-                    {% if page.has_previous %}
-                    <li><a href="?page={{ page.previous_page_number }}" class="prev">Prev</a></li>
-                    {% endif %}
-                    {% for i in page.paginator.page_range  %}
-                        {% if page.number == i %}
-                            <li><a class="active">{{i}}</a></li>
-                        {% else %}
-                        <li><a href="?page={{ i }}">{{i}}</a></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if page.has_next %}
-                    <li><a href="?page={{ page.next_page_number }}" class="next">Next</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-
-        </div>
     </section>
-    
 
-</div>
-{% endblock %}
+
+
+
+
+
+    {% endblock %}

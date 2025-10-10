@@ -1,0 +1,89 @@
+  {% extends 'base.html' %}
+{% load i18n static %}
+{% load custom_filters %}
+
+{% block content %}
+<link href="{% static 'css/taxnomy.css' %}" rel="stylesheet" >
+<div class="container">
+    <div class="head_whilsit">
+        <h1>Saralanganlar</h1>
+<a href="#" class="btn-clear-wishlist" onclick="clearWishlist(event)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_890_829)">
+                <path d="M4 7H20" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 11V17" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 11V17" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7" stroke="#DD2D2D" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_890_829">
+                <rect width="24" height="24" fill="white"/>
+                </clipPath>
+                </defs>
+           </svg>
+
+
+            Saralanganlarni tozalash
+        </a>
+    </div>
+</div>
+
+<div class="container mt-5">
+      {% if items  %}
+                    <div class="product_container">
+                        <div class="product_wrapper">
+                         {% if items %}
+    <ul class="product_list">
+        {% for item in items %}
+            <li class="product_card">
+                <div class="product_image">
+                    <a href="{{ item.get_url }}">
+                       <img src="{{ item.product.image.url }}" alt="">
+                    </a>
+                    <i class="fa-heart fas active" data-product="{{ item.id }}"></i>
+                </div>
+                <div class="infobox">
+                    <h3><a href="{{ item.get_url }}">{{ item.product.product_name }}</a></h3>
+                    {% if item.product.price %}
+                        <p>{{ item.product.price|price_format }}</p>
+                        <a href="{% url 'add_cart' item.id %}" class="btn cart">
+                            <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
+                        </a>
+                    {% else %}
+                        <a href="{{ item.get_url }}" class="btn cart">
+                            <i class="fas fa-info-circle"></i> Batafsil
+                        </a>
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>❌ Saralangan mahsulotlar yo‘q</p>
+{% endif %}
+
+                            <div class="pagination">
+                                <ul class="listpagination">
+                                      {% if page.has_previous %}
+                                          <li><a href="?page={{ page.previous_page_number }}" class="prev">Prev</a></li>
+                                      {% endif %}
+                                             {% for i in page.paginator.page_range  %}
+                                            {% if page.number == i %}
+                                                <li><a class="active">{{i}}</a></li>
+                                            {% else %}
+                                            <li><a href="?page={{ i }}">{{i}}</a></li>
+                                            {% endif %}
+                                     {% endfor %}
+                                    {% if page.has_next %}
+                                         <li><a href="?page={{ page.next_page_number }}" class="next">Next</a></li>
+                                     {% endif %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                 {% endif %}
+</div>
+
+{% endblock %}

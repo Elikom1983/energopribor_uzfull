@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 {% load custom_filters %}
+{% block title %}{{ about.seo_title }}{% endblock  %}
+        {% block description %}{{ about.seo_description|safe}}{% endblock  %}
+        {% block keywords %}{{ about.seo_keywords  }}{% endblock  %} 
 
 {% block content %}
 
@@ -8,10 +11,10 @@
         <div class="container_about">
             <section class="vidiobox">
                 <div class="video-wrapper">
-                    <h2 class="avout_title">Biz haqimizda</h2>
+                    <h2 class="avout_title">{{about.title}}</h2>
                     <!-- Олдин чиқадиган расм -->
-                    <div class="video-overlay" id="overlay">
-                        <img src="img/vido.png" alt="Preview">
+                    <div class="video-overlay" id="overlay" data-video="{{about.video}}">
+                        <img src="{{about.imagevideo.url}}" alt="Preview">
                         <div class="play-btn"><i class="fa-regular fa-circle-play"></i></div>
                     </div>
 
@@ -20,21 +23,8 @@
                         allow="autoplay; encrypted-media" allowfullscreen style="display:none;">
                     </iframe>
                     <div class="text_content">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, repudiandae! Eveniet, tenetur.
-                            Rerum voluptatibus excepturi voluptas dolores, tempore hic quos tempora assumenda
-                            repudiandae, fuga unde deserunt sapiente asperiores. Architecto, id..</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, repudiandae! Eveniet, tenetur.
-                            Rerum voluptatibus excepturi voluptas dolores, tempore hic quos tempora assumenda
-                            repudiandae, fuga unde deserunt sapiente asperiores. Architecto, id..</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, repudiandae! Eveniet, tenetur.
-                            Rerum voluptatibus excepturi voluptas dolores, tempore hic quos tempora assumenda
-                            repudiandae, fuga unde deserunt sapiente asperiores. Architecto, id..</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, repudiandae! Eveniet, tenetur.
-                            Rerum voluptatibus excepturi voluptas dolores, tempore hic quos tempora assumenda
-                            repudiandae, fuga unde deserunt sapiente asperiores. Architecto, id..</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, repudiandae! Eveniet, tenetur.
-                            Rerum voluptatibus excepturi voluptas dolores, tempore hic quos tempora assumenda
-                            repudiandae, fuga unde deserunt sapiente asperiores. Architecto, id..</p>
+                        {{ about.content|safe }}
+                        
                     </div>
                 </div>
 
@@ -42,115 +32,67 @@
 
             </section>
         </div>
+         {% if number %}
         <section>
             <div class="container_about">
-                <h2 class="avout_title">Kompaniyamiz raqamlarda</h2>
+                <h2 class="avout_title">{% trans "Kompaniyamiz raqamlarda" %}</h2>
             </div>
 
             <div class=" banner_about"
-                style="background: url(img/aboutBak.png); background-repeat: no-repeat;background-position: center;background-size: cover;background-attachment: fixed;">
+                style="background: url({{about.banerimg.url}}); background-repeat: no-repeat;background-position: center;background-size: cover;background-attachment: fixed;">
                 <div class="container_about">
                     <ul class="banner_about_box">
+                       {% for item in number %}
+                      
                         <li>
-                            <h3>42 mln+</h3>
-                            <p>Sotilgan mahsulotlar</p>
+                            <h3>{{item.raqamlar}}</h3>
+                            <p>{{item.text}}</p>
                         </li>
-                        <li>
-                            <h3>5478</h3>
-                            <p>Xodimlar soni</p>
-                        </li>
-                        <li>
-                            <h3>7 mln+</h3>
-                            <p>Xaridorlar O‘zbekiston bo‘ylab</p>
-                        </li>
-                        <li>
-                            <h3>147</h3>
-                            <p>Kategoriyalar turi</p>
-                        </li>
-                        <li>
-                            <h3>1478</h3>
-                            <p>Xodimlar soni</p>
-
-                        </li>
-                        <li>
-                            <h3>5412</h3>
-                            <p>Xaridorlar dunyo bo‘ylab</p>
-
-                        </li>
+                      {% endfor %}
+                      
                     </ul>
                 </div>
             </div>
         </section>
+     {% endif %}
+     {% if team  %}
         <section class="teams">
             <div class="container_about">
                 <h3 class="avout_title">
-                    Bizning jamoa
+                    {% trans "Bizning jamoa" %}
                 </h3>
                 <div class="teambox">
+                    {% for tem in team %}
                     <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
+                        <div class="teamImg">
+                            <img src="{{tem.image.url}}" alt=""></div>
+                        <h3 class="teamname">{{tem.ismi}}</h3>
+                        <p class="team_subject">{{tem.lavozimi}}</p>
                     </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
-                    <div class="teamitem">
-                        <div class="teamImg"><img src="img/png-transparent-business-guru-gobind-singh-indraprastha-university-lawyer-minirol-level.png" alt=""></div>
-                        <h3 class="teamname">Sanjar Ismoilov</h3>
-                        <p class="team_subject">Rahbar</p>
-                    </div>
+                    {% endfor %}
+                   
+                   
                 </div>
             </div>
         </section>
-        <section class="galleriya">
-            <div class="container_about">
-              <h2 class="avout_title">Biz haqimizda</h2>
-             <div class="galleriya_item">
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                  <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                <a href="img/yxgzTyB-ROc.jpg"><img src="img/yxgzTyB-ROc.jpg" alt=""></a>
-                
+    {% endif %}
+  {% if yutuq %}
+<section class="galleriya">
+  <div class="container_about">
+    <h2 class="avout_title">{% trans "Biz haqimizda" %}</h2>
+    <div class="galleriya_item">
+      {% for yut in yutuq %}
+  {% if yut.image %}
+    <a href="{{ yut.image.url }}">
+      <img src="{{ yut.image.url }}" alt="">
+    </a>
+  {% endif %}
+{% endfor %}
 
-
-             </div>
-             </div>
-
-
-
-        </section>
+    </div>
+  </div>
+</section>
+{% endif %}
 
     </main>
 
@@ -160,14 +102,13 @@
             <div class="container">
                 <div class="bannerbox">
                     <div class="bannerleft">
-                        <img class="bannerimg" src="img/image 68.png">
+                        <img class="bannerimg" src="{{bannerhome.image.url}}">
 
                     </div>
                     <div class="bannerright">
-                        <h3>Professional mutaxassislar</h3>
-                        <p>Mahsulot tanlash, to‘lov usullari, yetkazib berish xizmati bo‘yicha bepul konsultatsiya
-                            oling.</p>
-                        <a href="#" class="btn">Bepul qo‘ng‘iroq</a>
+                        <h3>{{bannerhome.title}}</h3>
+                        <p>{{bannerhome.text}}</p>
+                        <a href="#" class="btn">{% trans "Bepul qo‘ng‘iroq" %}</a>
 
                     </div>
                 </div>

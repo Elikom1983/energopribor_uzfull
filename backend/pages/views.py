@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 from energy.settings import DEFAULT_TO_EMAIL, EMAIL_HOST_USER
-from .models import AboutImages, AboutMainImage, Partners, Team
+from .models import AboutImages, AboutMainImage, Partners
 from .forms import ContactForm
 # Create your views here.
 def about(request):
@@ -43,10 +43,5 @@ def contact(request):
         
     return render(request, "pages/contact.html", {'form': form})
 
-def team(request):
-    team = Team.objects.all()
-    context={
-        'team':team,
-    }
-    return render(request, 'pages/team.html', context)
+
     
