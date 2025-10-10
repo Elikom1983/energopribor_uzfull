@@ -77,6 +77,16 @@ class Product(TranslatableModel):
         if self.discount and self.price:
             return int(self.price - (self.price * self.discount / 100))
         return self.price
+    def get_url(self):
+            """
+            Product batafsil sahifa URL sini qaytaradi
+            """
+            return reverse('store:product_detail', kwargs={
+                'category_slug': self.category.slug,
+                'product_slug': self.slug
+            })
+
+    
 
 # =======================
 # Product галерея

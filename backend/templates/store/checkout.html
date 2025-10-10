@@ -10,7 +10,7 @@
     <h2>Rasmiylashtirish</h2>
 
     <!-- 🔹 enctype multipart - fayl yuklash uchun kerak -->
-    <form method="POST" action="{% url 'checkout' %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'store:checkout' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="checkout-grid">
 

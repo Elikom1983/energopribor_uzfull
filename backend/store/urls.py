@@ -2,7 +2,7 @@ from . import  views
 from django.urls import path
 from django.conf.urls import handler404, handler500
 from .views import AttributeValueAutocomplete
-
+app_name = 'store'  # 🔹 MUHIM! Namespace uchun shart
 
 
 urlpatterns = [

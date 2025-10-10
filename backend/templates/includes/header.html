@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div class="header_center_right" >
-                 <a href="{% url 'wishlist' %}" class="wishlist">
+                 <a href="{% url 'store:wishlist' %}" class="wishlist">
                    <img src="{% static 'img/hearr.svg' %}" alt="">
                      {% trans "Saralanganlar" %}
                         <span data-attr="{{ wishlist_count }}">{{ wishlist_count }}</span>

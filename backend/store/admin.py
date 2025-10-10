@@ -48,6 +48,9 @@ class ProductAdmin(TranslatableAdmin):
             return mark_safe(f'<img src="{obj.image.url}" width="60" height="60" style="border-radius:5px;object-fit:cover;" />')
         return "-"
     get_image.short_description = "Rasm"
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('product_name',)}
+
     
 @admin.register(Attribute)
 class AttributeAdmin(TranslatableAdmin):
@@ -57,6 +60,9 @@ class AttributeAdmin(TranslatableAdmin):
     def get_name(self, obj):
         return obj.safe_translation_getter("name", any_language=True)
     get_name.short_description = "Attribute nomi"
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('get_name',)}
+
 
 @admin.register(AttributeValue)
 class AttributeValueAdmin(TranslatableAdmin):

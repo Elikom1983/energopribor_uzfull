@@ -72,7 +72,7 @@
                                     <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
                                     {% if item.price %}
                                     <p>{{ item.price|price_format }}</p>
-                                   <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
+                                   <a href="{% url 'store:add_to_cart' item.id %}" class="btn cart">
                                         <i class="fas fa-shopping-cart"></i> {% trans "Savatga qo‘shish" %}
                                      </a>
                                     {% else %}
@@ -162,7 +162,7 @@
                                     <h3><a href="{{ item.get_url }}">{{item.product_name}}</a></h3>
                                     {% if item.price %}
                                     <p>{{ item.price|price_format }}</p>
-                                   <a href="{% url 'add_to_cart' item.id %}" class="btn cart">
+                                   <a href="{% url 'store:add_to_cart' item.id %}" class="btn cart">
                                         <i class="fas fa-shopping-cart"></i>{% trans 'Savatga qo‘shish' %}
                                      </a>
                                     {% else %}

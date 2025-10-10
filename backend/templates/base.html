@@ -269,8 +269,8 @@
     <script>
 function clearWishlist(event) {
     event.preventDefault();
-    
-    fetch("{% url 'clear_wishlist' %}", {
+
+    fetch("{% url 'store:clear_wishlist' %}", {
         method: 'POST',
         headers: {
             'X-CSRFToken': getCookie('csrftoken'),
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log("Yuborilayotgan filterlar:", filters); // Debug uchun
 
-        fetch("{% url 'ajax_filter_products' %}", {
+        fetch("{% url 'store:ajax_filter_products' %}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

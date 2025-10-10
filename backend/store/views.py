@@ -19,6 +19,12 @@ from dal import autocomplete
 from .models import AttributeValue
 from django.db.models import Q
 
+# views.py бошига қўшинг
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
 
 
 class AttributeValueAutocomplete(autocomplete.Select2QuerySetView):
@@ -162,7 +168,7 @@ def checkout(request):
         cart.is_active = False
         cart.save()
 
-        return redirect('complete')
+        return redirect('store:complete')
 
     context = {'cart_items': cart_items, 'cart_total': cart_total}
     return render(request, 'store/checkout.html', context)
@@ -214,12 +220,20 @@ def clear_wishlist(request):
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+
+    # Саватни олиш ёки яратиш
     cart, created = Cart.objects.get_or_create(cart_id=_cart_id(request), is_active=True)
+
+    # CartItem ни олиш ёки яратиш
     cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product, is_active=True)
+
+    # Агар олдиндан бўлса, quantity ошириш
     if not created:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('cart_detail')
+
+    # Namespace билан redirect
+    return redirect('store:cart_detail')
 
 
 @login_required

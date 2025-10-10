@@ -119,7 +119,7 @@
                                     {{ single_product.discounted_price|price_format }} so‘m
                                 </p>
 
-                                <a href="{% url 'add_to_cart' single_product.id %}" class="btn cart">
+                                <a href="{% url 'store:add_to_cart' single_product.id %}" class="btn cart">
                                     <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
                                 </a>
                             <div class="sendclass"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -178,7 +178,7 @@
                         <div class="infobox">
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.price|price_format}} so'm</p>
-                             <a href="{% url 'add_to_cart' product.id %}" class="btn cart">
+                             <a href="{% url 'store:add_to_cart' product.id %}" class="btn cart">
                                  <i class="fas fa-shopping-cart"></i> Savatga qo‘shish
                               </a>
                         </div>

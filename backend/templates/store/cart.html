@@ -62,7 +62,7 @@
 
                     <div class="cart-summary">
                     <p>Jami: <span id="cart-total">{{ cart_total|price_format }}</span> so‘m</p>
-                    <a href="{% url 'checkout' %}" class="btn checkout">Rasmiylashtirishga o‘tish</a>
+                    <a href="{% url 'store:checkout' %}" class="btn checkout">Rasmiylashtirishga o‘tish</a>
                     </div>
                     </div>
 
@@ -89,7 +89,7 @@
         }
 
         // AJAX orqali backend-ga yuborish
-        fetch("{% url 'update_cart' %}", {
+        fetch("{% url 'store:update_cart' %}", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@
     function removeCartItem(itemId) {
         if (!confirm("Savatdan o'chirishni xohlaysizmi?")) return;
 
-        fetch("{% url 'remove_cart_item' %}", {
+        fetch("{% url 'store:remove_cart_item' %}", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

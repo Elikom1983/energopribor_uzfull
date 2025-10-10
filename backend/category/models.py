@@ -4,9 +4,14 @@ from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 from .managers import CategoryManager
 from django.urls import reverse
+from django.db import models
+from django.utils.text import slugify
+from parler.models import TranslatableModel, TranslatedFields
+from mptt.models import MPTTModel, TreeForeignKey
 
 class MetaDetail(models.Model):
     category = models.ForeignKey("Category", on_delete=models.CASCADE, blank=True, null=True)
+    seo= models.CharField(max_length=255)
     keyword = models.CharField(max_length=255)
     description = models.TextField()
 
@@ -28,7 +33,7 @@ class Category(MPTTModel, TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(max_length=255, verbose_name=_('Name'), null=True, blank=True),
     )
-    slug = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('Slug'))
+    slug = models.CharField(max_length=255, null=True,  blank=True, verbose_name=_('Slug'))
     image = models.ImageField(upload_to='images/category', default='category/default.jpg', verbose_name=_('Images'))
     is_popular = models.BooleanField(default=False, verbose_name="Ommabop kategoriya")
 
@@ -48,6 +53,15 @@ class Category(MPTTModel, TranslatableModel):
     def translated_name(self):
         return self.safe_translation_getter("name", any_language=True) or "-"
 
-    # 🔹 Тўғри URL
     def get_absolute_url(self):
-        return reverse('products_by_category', kwargs={'category_slug': self.slug})
+        return reverse('store:products_by_category', kwargs={'category_slug': self.slug})
+
+    # 🔹 Avtomatik slug qo‘shish
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            name = self.safe_translation_getter('name', any_language=True)
+            if name:
+                self.slug = slugify(name)
+        super().save(*args, **kwargs)
+        
+
